@@ -1,0 +1,8 @@
+Makefile
+schedules
+*.cpp
+*.mak
+*.o
+*.prm
+yellowcolIndividual.hpp
+*.dat
