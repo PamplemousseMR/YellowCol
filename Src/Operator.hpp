@@ -26,7 +26,7 @@ public:
 
 	Operator& operator=(Operator&&) = default;
 
-	virtual T compute() const;
+	virtual T compute(T, T, T, T ,T, T) const;
 
 };
 
@@ -35,7 +35,7 @@ public:
 --------------------------------------------------------------------------------- */
 
 template< typename T >
-T Operator< T >::compute() const
+T Operator< T >::compute(T, T, T, T ,T, T) const
 {
 	throw "'T Operator::compute() const' need to be override";
 	return T();

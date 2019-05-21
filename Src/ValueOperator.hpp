@@ -12,15 +12,25 @@
 										Declaration
 --------------------------------------------------------------------------------- */
 
+enum ARGUMENT
+{
+	A,
+	B,
+	C,
+	D,
+	E,
+	F
+};
+
 template< typename T >
 class ValueOperator : public Operator< T >
 {
 
 public:
 
-	ValueOperator(const T&);
+	ValueOperator(const ARGUMENT&);
 
-	virtual T compute() const override;
+	virtual T compute(T, T, T, T ,T, T) const override;
 	
 	friend std::ostream& operator <<(std::ostream& _o, const ValueOperator& _t)
 	{
@@ -29,7 +39,7 @@ public:
 
 private:
 
-	const T m_value;
+	const ARGUMENT m_arg;
 
 };
 
@@ -38,14 +48,36 @@ private:
 --------------------------------------------------------------------------------- */
 
 template< typename T >
-ValueOperator< T >::ValueOperator(const T& _value) :
+ValueOperator< T >::ValueOperator(const ARGUMENT& _arg) :
 	Operator< T >(),
-	m_value(_value)
+	m_arg(_arg)
 {
 }
 
 template< typename T >
-T ValueOperator< T >::compute() const
+T ValueOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 {
-	return m_value;
+	T result = 0;
+	switch(m_arg)
+	{
+		case A:
+			result = _a;
+			break;
+		case B:
+			result = _b;
+			break;
+		case C:
+			result = _c;
+			break;
+		case D:
+			result = _d;
+			break;
+		case E:
+			result = _e;
+			break;
+		case F:
+			result = _f;
+			break;
+	}
+	return result;
 }

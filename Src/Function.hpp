@@ -27,7 +27,7 @@ public:
 
 	Function& operator=(Function&&) = default;
 	
-	float compute() const;
+	float compute(float, float, float, float ,float, float) const;
 
 	friend std::ostream& operator <<(std::ostream& _o, const Function& _t)
 	{
@@ -49,7 +49,7 @@ Function::Function(const Operator< float >& _operator) :
 {
 }
 
-float Function::compute() const
+float Function::compute(float _a, float _b, float _c, float _d, float _e, float _f) const
 {
-	return m_operator.compute();
+	return m_operator.compute(_a, _b, _c, _d, _e, _f);
 }
