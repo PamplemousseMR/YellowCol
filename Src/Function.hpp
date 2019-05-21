@@ -7,6 +7,9 @@
 #include <string>
 
 #include "Operator.hpp"
+#include "ValueOperator.hpp"
+#include "MonoOperator.hpp"
+#include "DualOperator.hpp"
 
 /* ---------------------------------------------------------------------------------
 										Declaration
@@ -22,13 +25,13 @@ public:
 
 	~Function();
 
-	Function(const Function&) = default;
+	Function(const Function&);
 
 	Function& operator=(const Function&) = delete;
 
-	Function(Function&&) = default;
+	Function(Function&&) = delete;
 
-	Function& operator=(Function&&) = default;
+	Function& operator=(Function&&) = delete;
 	
 	T compute(T, T, T, T ,T, T) const;
 	
@@ -61,6 +64,35 @@ template< typename T >
 Function< T >::~Function()
 {
 	delete m_operator;
+}
+
+template< typename T >
+Function< T >::Function(const Function& _f)
+{
+	{
+		const ValueOperator< T >* const test = dynamic_cast<  const ValueOperator< T >* const >(_f.m_operator);
+		if(test)
+		{
+			m_operator = new ValueOperator< T >(*test);
+			return;
+		}
+	}
+	{
+		const MonoOperator< T >* const test = dynamic_cast<  const MonoOperator< T >* const >(_f.m_operator);
+		if(test)
+		{
+			m_operator = new MonoOperator< T >(*test);
+			return;
+		}
+	}
+	{
+		const DualOperator< T >* const test = dynamic_cast<  const DualOperator< T >* const >(_f.m_operator);
+		if(test)
+		{
+			m_operator = new DualOperator< T >(*test);
+			return;
+		}
+	}
 }
 
 template< typename T >

@@ -20,19 +20,19 @@ public:
 
 	virtual ~Operator();
 
-	Operator(const Operator&) = delete;
+	Operator(const Operator&) = default;
 
 	Operator& operator=(const Operator&) = delete;
 
-	Operator(Operator&&) = default;
+	Operator(Operator&&) = delete;
 
-	Operator& operator=(Operator&&) = default;
+	Operator& operator=(Operator&&) = delete;
 
-	virtual T compute(T, T, T, T ,T, T) const;
+	virtual T compute(T, T, T, T ,T, T) const = 0;
 
-	virtual long long getNumberOfOperator() const;
+	virtual long long getNumberOfOperator() const = 0;
 	
-	virtual std::string print() const ;
+	virtual std::string print() const = 0;
 
 };
 
@@ -41,27 +41,6 @@ public:
 --------------------------------------------------------------------------------- */
 
 template< typename T >
-T Operator< T >::compute(T, T, T, T ,T, T) const
-{
-	throw "'T Operator::compute() const' need to be override";
-	return T();
-}
-
-template< typename T >
 Operator< T >::~Operator()
 {
-}
-
-template< typename T >
-std::string Operator< T >::print() const
-{
-	throw "'std::string Operator::print() const' need to be override";
-	return "";
-}
-
-template< typename T >
-long long Operator< T >::getNumberOfOperator() const
-{
-	throw "'long long Operator::getNumberOfOperator() const' need to be override";
-	return 0;
 }

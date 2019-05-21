@@ -7,7 +7,10 @@
 #include "Src/Function.hpp"
 #include "Src/ValueOperator.hpp"
 #include "Src/MonoOperator.hpp"
+#include "Src/MonoOperator.hxx"
 #include "Src/DualOperator.hpp"
+#include "Src/DualOperator.hxx"
+
 vector< vector< float > > s_table;
 
 \end
@@ -94,7 +97,7 @@ vector< vector< float > > s_table;
 
 \GenomeClass::initialiser:	
 	try{
-		const Operator< float >* op = nullptr;
+		Operator< float >* op = nullptr;
 
 		const bool mono = static_cast< bool >(random(0, 2));
 		if(mono)
@@ -111,6 +114,7 @@ vector< vector< float > > s_table;
 
 		Function< float >& function = *(new Function< float >(op));
 		Genome.m_function = &function;
+		std::cout << "Initialiser " << function << " = " << function.compute(1,1,1,1,1,1) << std::endl;
 	} 
 	catch(char const* _e)
 	{
@@ -124,8 +128,13 @@ vector< vector< float > > s_table;
 
 \GenomeClass::crossover:
 	const Function< float >& firstParent = *(Function< float >*)parent1.m_function;
+	//const Function< float >& secondParent = *(Function< float >*)parent2.m_function;
 	std::cout << "Crossover " << firstParent << " = " << firstParent.compute(1,1,1,1,1,1) << std::endl;
-	std::exit(1);
+	
+	//long int nLocus = random(0, 101);
+
+  	//for (int i = nLocus; i<SIZE; i++) child.x[i]=parent2.x[i];
+	//std::exit(1);
 \end
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -154,9 +163,9 @@ vector< vector< float > > s_table;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \Default run parameters :         // Please let the parameters appear in this order
-Number of generations : 300     // NB_GEN
+Number of generations : 5     // NB_GEN
 Time limit: 0                     // In seconds, 0 to deactivate
-Population size : 1000             // POP_SIZE
+Population size : 10             // POP_SIZE
 Offspring size : 90%             // 40% 
 Mutation probability : 0.4        // MUT_PROB
 Crossover probability : 1         // XOVER_PROB

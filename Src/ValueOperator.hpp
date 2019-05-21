@@ -30,9 +30,17 @@ public:
 
 	ValueOperator(const ARGUMENT&);
 
+	ValueOperator(const ValueOperator&) = default;
+
+	ValueOperator& operator=(const ValueOperator&) = delete;
+
+	ValueOperator(ValueOperator&&) = delete;
+
+	ValueOperator& operator=(ValueOperator&&) = delete;
+
 	virtual T compute(T, T, T, T ,T, T) const override;
 	
-	virtual long long getNumberOfOperator() const;
+	virtual long long getNumberOfOperator() const override;
 
 	virtual std::string print() const override;
 
