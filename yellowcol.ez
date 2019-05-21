@@ -1,11 +1,14 @@
 \User declarations :
 #include <iostream>
+#include <fstream>
+#include <cstdlib>
 
 #include "Src/Operator.hpp"
 #include "Src/Function.hpp"
 #include "Src/ValueOperator.hpp"
 #include "Src/MonoOperator.hpp"
 #include "Src/DualOperator.hpp"
+vector<vector<float>> s_table;
 
 \end
 
@@ -25,6 +28,24 @@
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \Before everything else function:
+	ifstream file ("Data/data.csv");    
+	while(!file.eof())
+    {
+        std::string ligne;
+        vector<float> row;
+        size_t pos = string::npos;
+        getline(file,ligne);
+        while((pos = ligne.find_first_of(";")) != string::npos)
+        {
+            row.push_back(strtof(ligne.substr(0, pos).c_str(),0));
+            ligne.erase(0, pos+1);
+ 
+        }
+		if(ligne.length() > 0){
+			row.push_back(strtof(ligne.c_str(),0));
+		}
+        s_table.push_back(row);
+    }
 \end
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -71,7 +92,7 @@
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
-\GenomeClass::initialiser:
+\GenomeClass::initialiser:	
 	try{
 		const Operator< float >* op = nullptr;
 
