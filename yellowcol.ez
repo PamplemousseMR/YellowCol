@@ -1,8 +1,8 @@
 \User declarations :
 #include <iostream>
 
-#include "Src/Function.hpp"
 #include "Src/Operator.hpp"
+#include "Src/Function.hpp"
 #include "Src/ValueOperator.hpp"
 #include "Src/DualOperator.hpp"
 
