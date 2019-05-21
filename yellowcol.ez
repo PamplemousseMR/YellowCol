@@ -76,8 +76,10 @@
 		ValueOperator< float > value1(ARGUMENT::A);
 		ValueOperator< float > value2(ARGUMENT::B);
 		DualOperator< float > op(DualInstruction::ADDITION, value1, value2);
+		MonoOperator< float > super_op(MonoInstruction::SQUARE_ROOT, op);
+		Function& function = *(new Function(super_op));
+		std::cout << "Initialiser " << function << " = " << function.compute(1,1,1,1,1,1) << std::endl;
 
-		Function& function = *(new Function(op));
 		Genome.m_function = &function;
 	} 
 	catch(char const* _e)

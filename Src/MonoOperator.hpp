@@ -31,10 +31,7 @@ public:
 
 	virtual T compute(T, T, T, T ,T, T) const override;
 	
-	friend std::ostream& operator <<(std::ostream& _o, const MonoOperator& _t)
-	{
-		return _o << "TODO";
-	}
+	virtual std::string print() const override;
 
 private:
 
@@ -84,4 +81,38 @@ T MonoOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 	}
 
 	return result;
+}
+
+template< typename T >
+std::string MonoOperator< T >::print() const
+{
+	std::string before = "";
+	std::string after = ""; 
+	switch(m_instruction)
+	{
+		case MonoInstruction::SQUARE_ROOT :
+			before = "sqrt(";
+			after = ")";
+			break;
+		case MonoInstruction::LOG :
+			before = "log(";
+			after = ")";
+			break;
+		case MonoInstruction::ABSOLUTE :
+			before = "abs(";
+			after = ")";
+			break;
+		case MonoInstruction::NEGATION :
+			before = "neg(";
+			after = ")";
+			break;
+		case MonoInstruction::INVERSION :
+			before = "inv(";
+			after = ")";
+			break;
+		default :
+			throw "Unknow instruction";
+			break;
+	}
+	return before + m_operand->print() + after ;
 }

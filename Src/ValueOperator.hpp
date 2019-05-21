@@ -32,10 +32,7 @@ public:
 
 	virtual T compute(T, T, T, T ,T, T) const override;
 	
-	friend std::ostream& operator <<(std::ostream& _o, const ValueOperator& _t)
-	{
-		return _o << "TODO";
-	}
+	virtual std::string print() const override;
 
 private:
 
@@ -78,6 +75,41 @@ T ValueOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 		case F:
 			result = _f;
 			break;
+		default:
+			throw "Unknow instruction";
+			break;
 	}
 	return result;
+}
+
+template< typename T >
+std::string ValueOperator< T >::print() const
+{
+	std::string value = "";
+	switch(m_arg)
+	{
+		case A:
+			value = "A";
+			break;
+		case B:
+			value = "B";
+			break;
+		case C:
+			value = "C";
+			break;
+		case D:
+			value = "D";
+			break;
+		case E:
+			value = "E";
+			break;
+		case F:
+			value = "F";
+			break;
+		default:
+			throw "Unknow instruction";
+			break;
+	}
+	
+	return value ;
 }

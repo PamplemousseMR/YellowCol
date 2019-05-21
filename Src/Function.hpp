@@ -31,12 +31,12 @@ public:
 
 	friend std::ostream& operator <<(std::ostream& _o, const Function& _t)
 	{
-		return _o << "TODO";
+		return _o << _t.m_operator->print();
 	}
 
 private:
 
-	Operator< float > m_operator;	
+	const Operator< float >* m_operator;	
 
 };
 
@@ -45,11 +45,11 @@ private:
 --------------------------------------------------------------------------------- */
 
 Function::Function(const Operator< float >& _operator) :
-	m_operator(_operator)
+	m_operator(&_operator)
 {
 }
 
 float Function::compute(float _a, float _b, float _c, float _d, float _e, float _f) const
 {
-	return m_operator.compute(_a, _b, _c, _d, _e, _f);
+	return m_operator->compute(_a, _b, _c, _d, _e, _f);
 }

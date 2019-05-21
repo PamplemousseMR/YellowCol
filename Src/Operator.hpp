@@ -27,6 +27,8 @@ public:
 	Operator& operator=(Operator&&) = default;
 
 	virtual T compute(T, T, T, T ,T, T) const;
+	
+	virtual std::string print() const ;
 
 };
 
@@ -39,4 +41,11 @@ T Operator< T >::compute(T, T, T, T ,T, T) const
 {
 	throw "'T Operator::compute() const' need to be override";
 	return T();
+}
+
+template< typename T >
+std::string Operator< T >::print() const
+{
+	throw "'std::string Operator::print() const' need to be override";
+	return "";
 }
