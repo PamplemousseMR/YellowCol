@@ -16,7 +16,9 @@ enum DualInstruction{
 	ADDITION,
 	SUBTRACTION,
 	MULTIPLICATION,
-	DIVISION
+	DIVISION,
+	MINIMUM,
+	MAXIMUM
 };
 
 template< typename T >
@@ -74,6 +76,12 @@ T DualOperator< T >::compute() const
 			break;
 		case DualInstruction::DIVISION :
 			result = m_firstOperand->compute() / m_secondOperand->compute();
+			break;
+		case DualInstruction::MINIMUM :
+			result = std::min(m_firstOperand->compute(), m_secondOperand->compute());
+			break;
+		case DualInstruction::MAXIMUM :
+			result = std::max(m_firstOperand->compute(), m_secondOperand->compute());
 			break;
 		default :
 			throw "Unknow instruction";
