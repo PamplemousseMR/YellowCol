@@ -1,5 +1,7 @@
 \User declarations :
 #include <iostream>
+
+#include "Src/Function.hpp"
 \end
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -54,7 +56,7 @@ std::cout << "Before everything else" << std::endl;
 
 \User classes :
 	GenomeClass { 
-		int* m_schedules;	// This is a HACK, it will be changed to void*.
+		int* m_function;	// This is a HACK, it will be changed to void*.
 	}
 \end
 
@@ -69,7 +71,8 @@ std::cout << "Before everything else" << std::endl;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \GenomeClass::initialiser:
-	std::cout << "Initialiser" << std::endl;
+	Function& function = (*(Function*)Genome.m_function); 
+	std::cout << "Initialiser " << function << std::endl;
 \end
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------

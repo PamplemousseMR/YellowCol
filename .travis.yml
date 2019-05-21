@@ -230,6 +230,8 @@ install:
 before_script:
   - cd ${TRAVIS_BUILD_DIR}  
   - ./easea/bin/easea yellowcol.ez
+  - chmod 777 ./hack.sh
+  - ./hack.sh
   - if [ $TRAVIS_OS_NAME = "osx" ]; then
       sed -i -e "s/-fopenmp//g" Makefile;
     fi;
