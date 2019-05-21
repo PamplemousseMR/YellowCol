@@ -73,13 +73,22 @@
 
 \GenomeClass::initialiser:
 	try{
-		ValueOperator< float > value1(ARGUMENT::A);
-		ValueOperator< float > value2(ARGUMENT::B);
-		DualOperator< float > op(DualInstruction::ADDITION, value1, value2);
-		MonoOperator< float > super_op(MonoInstruction::SQUARE_ROOT, op);
-		Function& function = *(new Function(super_op));
-		std::cout << "Initialiser " << function << " = " << function.compute(1,1,1,1,1,1) << std::endl;
+		const Operator< float >* op = nullptr;
 
+		const bool mono = static_cast< bool >(random(0, 2));
+		if(mono)
+		{
+			ValueOperator< float >* value = new ValueOperator< float >(static_cast< ARGUMENT >(random(0, 6)));
+			op = new MonoOperator< float >(static_cast< MONO_INSTRUCTION >(random(0, 5)), value);
+		}
+		else
+		{
+			ValueOperator< float >* value1 = new ValueOperator< float >(static_cast< ARGUMENT >(random(0, 6)));
+			ValueOperator< float >* value2 = new ValueOperator< float >(static_cast< ARGUMENT >(random(0, 6)));
+			op = new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(random(0, 6)), value1, value2);
+		}
+
+		Function< float >& function = *(new Function< float >(op));
 		Genome.m_function = &function;
 	} 
 	catch(char const* _e)
@@ -93,6 +102,9 @@
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \GenomeClass::crossover:
+	const Function< float >& firstParent = *(Function< float >*)parent1.m_function;
+	std::cout << "Crossover " << firstParent << " = " << firstParent.compute(1,1,1,1,1,1) << std::endl;
+	std::exit(1);
 \end
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------

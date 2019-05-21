@@ -12,7 +12,7 @@
 										Declaration
 --------------------------------------------------------------------------------- */
 
-enum DualInstruction{
+enum DUAL_INSTRUCTION{
 	ADDITION,
 	SUBTRACTION,
 	MULTIPLICATION,
@@ -27,7 +27,9 @@ class DualOperator : public Operator< T >
 
 public:
 
-	DualOperator(const DualInstruction&, const Operator< T >&, const Operator< T >&);
+	DualOperator(const DUAL_INSTRUCTION&, const Operator< T >*, const Operator< T >* const);
+
+	~DualOperator();
 
 	virtual T compute(T, T, T, T ,T, T) const override;
 	
@@ -35,7 +37,7 @@ public:
 
 private:
 
-	const DualInstruction m_instruction;
+	const DUAL_INSTRUCTION m_instruction;
 	
 	const Operator< T >* const m_firstOperand;
 
@@ -48,12 +50,19 @@ private:
 --------------------------------------------------------------------------------- */
 
 template< typename T >
-DualOperator< T >::DualOperator(const DualInstruction& _instruction, const Operator< T >& _firsOperand, const Operator< T >& _secondOperand) :
+DualOperator< T >::DualOperator(const DUAL_INSTRUCTION& _instruction, const Operator< T >* const _firsOperand, const Operator< T >* const _secondOperand) :
 	Operator< T >(),
 	m_instruction(_instruction),
-	m_firstOperand(&_firsOperand),
-	m_secondOperand(&_secondOperand)
+	m_firstOperand(_firsOperand),
+	m_secondOperand(_secondOperand)
 {
+}
+
+template< typename T >
+DualOperator< T >::~DualOperator()
+{
+	delete m_firstOperand;
+	delete m_secondOperand;
 }
 
 template< typename T >
@@ -62,22 +71,22 @@ T DualOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 	T result = 0;
 	switch(m_instruction)
 	{
-		case DualInstruction::ADDITION :
+		case DUAL_INSTRUCTION::ADDITION :
 			result = m_firstOperand->compute(_a, _b, _c, _d, _e, _f) + m_secondOperand->compute(_a, _b, _c, _d, _e, _f);
 			break;
-		case DualInstruction::SUBTRACTION :
+		case DUAL_INSTRUCTION::SUBTRACTION :
 			result = m_firstOperand->compute(_a, _b, _c, _d, _e, _f) - m_secondOperand->compute(_a, _b, _c, _d, _e, _f);
 			break;
-		case DualInstruction::MULTIPLICATION :
+		case DUAL_INSTRUCTION::MULTIPLICATION :
 			result = m_firstOperand->compute(_a, _b, _c, _d, _e, _f) * m_secondOperand->compute(_a, _b, _c, _d, _e, _f);
 			break;
-		case DualInstruction::DIVISION :
+		case DUAL_INSTRUCTION::DIVISION :
 			result = m_firstOperand->compute(_a, _b, _c, _d, _e, _f) / m_secondOperand->compute(_a, _b, _c, _d, _e, _f);
 			break;
-		case DualInstruction::MINIMUM :
+		case DUAL_INSTRUCTION::MINIMUM :
 			result = std::min(m_firstOperand->compute(_a, _b, _c, _d, _e, _f), m_secondOperand->compute(_a, _b, _c, _d, _e, _f));
 			break;
-		case DualInstruction::MAXIMUM :
+		case DUAL_INSTRUCTION::MAXIMUM :
 			result = std::max(m_firstOperand->compute(_a, _b, _c, _d, _e, _f), m_secondOperand->compute(_a, _b, _c, _d, _e, _f));
 			break;
 		default :
@@ -97,32 +106,32 @@ std::string DualOperator< T >::print() const
 	
 	switch(m_instruction)
 	{
-		case DualInstruction::ADDITION :
+		case DUAL_INSTRUCTION::ADDITION :
 			before = "";
 			between = "+";
 			after = "";
 			break;
-		case DualInstruction::SUBTRACTION :
+		case DUAL_INSTRUCTION::SUBTRACTION :
 			before = "";
 			between = "-";
 			after = "";
 			break;
-		case DualInstruction::MULTIPLICATION :
+		case DUAL_INSTRUCTION::MULTIPLICATION :
 			before = "";
 			between = "*";
 			after = "";
 			break;
-		case DualInstruction::DIVISION :
+		case DUAL_INSTRUCTION::DIVISION :
 			before = "";
 			between = "/";
 			after = "";
 			break;
-		case DualInstruction::MINIMUM :
+		case DUAL_INSTRUCTION::MINIMUM :
 			before = "min(";
 			between = ",";
 			after = ")";
 			break;
-		case DualInstruction::MAXIMUM :
+		case DUAL_INSTRUCTION::MAXIMUM :
 			before = "max(";
 			between = ",";
 			after = ")";

@@ -18,7 +18,9 @@ public:
 
 	Operator() = default;
 
-	Operator(const Operator&) = default;
+	virtual ~Operator();
+
+	Operator(const Operator&) = delete;
 
 	Operator& operator=(const Operator&) = delete;
 
@@ -41,6 +43,11 @@ T Operator< T >::compute(T, T, T, T ,T, T) const
 {
 	throw "'T Operator::compute() const' need to be override";
 	return T();
+}
+
+template< typename T >
+Operator< T >::~Operator()
+{
 }
 
 template< typename T >

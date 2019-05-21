@@ -12,12 +12,15 @@
 										Declaration
 --------------------------------------------------------------------------------- */
 
+template< typename T >
 class Function
 {
 
 public:
 
-	Function(const Operator< float >&);
+	Function(const Operator< T >* const);
+
+	~Function();
 
 	Function(const Function&) = default;
 
@@ -27,7 +30,7 @@ public:
 
 	Function& operator=(Function&&) = default;
 	
-	float compute(float, float, float, float ,float, float) const;
+	T compute(T, T, T, T ,T, T) const;
 
 	friend std::ostream& operator <<(std::ostream& _o, const Function& _t)
 	{
@@ -36,7 +39,7 @@ public:
 
 private:
 
-	const Operator< float >* m_operator;	
+	const Operator< T >* m_operator;	
 
 };
 
@@ -44,12 +47,20 @@ private:
 										Definition
 --------------------------------------------------------------------------------- */
 
-Function::Function(const Operator< float >& _operator) :
-	m_operator(&_operator)
+template< typename T >
+Function< T >::Function(const Operator< T >* const _operator) :
+	m_operator(_operator)
 {
 }
 
-float Function::compute(float _a, float _b, float _c, float _d, float _e, float _f) const
+template< typename T >
+Function< T >::~Function()
+{
+	delete m_operator;
+}
+
+template< typename T >
+T Function< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 {
 	return m_operator->compute(_a, _b, _c, _d, _e, _f);
 }
