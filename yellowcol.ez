@@ -8,7 +8,7 @@
 #include "Src/ValueOperator.hpp"
 #include "Src/MonoOperator.hpp"
 #include "Src/DualOperator.hpp"
-vector<vector<float>> s_table;
+vector< vector< float > > s_table;
 
 \end
 
@@ -139,7 +139,8 @@ vector<vector<float>> s_table;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \GenomeClass::evaluator:
-	return 1;
+	Function< float >* function = (Function< float >*)Genome.m_function;
+	return function->bench(s_table);
 \end
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------

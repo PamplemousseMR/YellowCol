@@ -31,6 +31,8 @@ public:
 	Function& operator=(Function&&) = default;
 	
 	T compute(T, T, T, T ,T, T) const;
+	
+	T bench(vector< vector< T > >) const;
 
 	long long getNumberOfOperator() const;
 
@@ -71,4 +73,20 @@ template< typename T >
 long long Function< T >::getNumberOfOperator() const
 {
 	return m_operator->getNumberOfOperator();
+}
+
+template< typename T >
+T Function< T >::bench(vector< vector< T > > _table) const
+{
+	float n = (float)_table.size();
+	T sum = 0;
+	for(auto row : _table){
+		T temp = compute(row[0], row[1], row[2], row[3], row[4], row[5]) - row[6];
+		if(std::isnan(temp)){
+			//return a hight value 
+			return 1000000000000;
+		}
+		sum += temp*temp;
+	}
+	return std::sqrt(1/n*sum);
 }
