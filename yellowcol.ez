@@ -4,6 +4,7 @@
 #include "Src/Operator.hpp"
 #include "Src/Function.hpp"
 #include "Src/ValueOperator.hpp"
+#include "Src/MonoOperator.hpp"
 #include "Src/DualOperator.hpp"
 
 \end
@@ -76,10 +77,12 @@ std::cout << "Before everything else" << std::endl;
 
 \GenomeClass::initialiser:
 	try{
-		ValueOperator< int > value1(1);
-		ValueOperator< int > value2(2);
-		DualOperator<int> op(DualInstruction::ADDITION, value1, value2);
-		std::cout << "Initialiser " << op.compute() << std::endl;
+		ValueOperator< float > value1(1);
+		ValueOperator< float > value2(2);
+		DualOperator< float > op(DualInstruction::ADDITION, value1, value2);
+		MonoOperator< float > super_op(MonoInstruction::SQUARE_ROOT, op);
+		std::cout << "Initialiser " << super_op.compute() << std::endl;
+		std::exit(1);
 	} 
 	catch(char const* _e)
 	{
