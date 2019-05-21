@@ -1,8 +1,9 @@
 Makefile
-schedules
+yellowcol
 *.cpp
 *.mak
 *.o
 *.prm
 yellowcolIndividual.hpp
 *.dat
+yellowcol\.plot

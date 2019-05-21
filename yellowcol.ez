@@ -2,6 +2,10 @@
 #include <iostream>
 
 #include "Src/Function.hpp"
+#include "Src/Operator.hpp"
+#include "Src/ValueOperator.hpp"
+#include "Src/DualOperator.hpp"
+
 \end
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -71,8 +75,18 @@ std::cout << "Before everything else" << std::endl;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \GenomeClass::initialiser:
-	Function& function = (*(Function*)Genome.m_function); 
-	std::cout << "Initialiser " << function << std::endl;
+	try{
+		ValueOperator< int > value1(1);
+		ValueOperator< int > value2(2);
+		DualOperator<int> op(DualInstruction::ADDITION, value1, value2);
+		std::cout << "Initialiser " << op.compute() << std::endl;
+	} 
+	catch(char const* _e)
+	{
+		std::cout << "error : " << _e << std::endl;
+		std::exit(1);
+	}
+	
 \end
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
