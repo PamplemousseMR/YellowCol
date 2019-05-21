@@ -33,6 +33,8 @@ public:
 
 	virtual T compute(T, T, T, T ,T, T) const override;
 	
+	virtual long long getNumberOfOperator() const;
+
 	virtual std::string print() const override;
 
 private:
@@ -89,6 +91,12 @@ T MonoOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 	}
 
 	return result;
+}
+
+template< typename T >
+long long MonoOperator< T >::getNumberOfOperator() const
+{
+	return m_operand->getNumberOfOperator() + 1;
 }
 
 template< typename T >

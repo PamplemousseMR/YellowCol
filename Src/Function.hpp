@@ -32,6 +32,8 @@ public:
 	
 	T compute(T, T, T, T ,T, T) const;
 
+	long long getNumberOfOperator() const;
+
 	friend std::ostream& operator <<(std::ostream& _o, const Function& _t)
 	{
 		return _o << _t.m_operator->print();
@@ -63,4 +65,10 @@ template< typename T >
 T Function< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 {
 	return m_operator->compute(_a, _b, _c, _d, _e, _f);
+}
+
+template< typename T >
+long long Function< T >::getNumberOfOperator() const
+{
+	return m_operator->getNumberOfOperator();
 }

@@ -32,6 +32,8 @@ public:
 
 	virtual T compute(T, T, T, T ,T, T) const override;
 	
+	virtual long long getNumberOfOperator() const;
+
 	virtual std::string print() const override;
 
 private:
@@ -80,6 +82,12 @@ T ValueOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 			break;
 	}
 	return result;
+}
+
+template< typename T >
+long long ValueOperator< T >::getNumberOfOperator() const
+{
+	return 1;
 }
 
 template< typename T >
