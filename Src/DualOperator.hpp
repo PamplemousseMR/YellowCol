@@ -17,7 +17,7 @@ class DualOperator : public Operator< T >
 
 public:
 
-	DualOperator(const DUAL_INSTRUCTION&, const Operator< T >*, const Operator< T >* const);
+	DualOperator(const DUAL_INSTRUCTION&, Operator< T >*, Operator< T >*);
 
 	~DualOperator();
 
@@ -33,14 +33,18 @@ public:
 	
 	virtual long long getNumberOfChildOperator() const override;
 
+	virtual int getNumberOfOperator() const override;
+
+	virtual Operator< T >* operator[](long long);
+
 	virtual std::string print() const override;
 
 private:
 
 	const DUAL_INSTRUCTION m_instruction;
 	
-	const Operator< T >* m_firstOperand;
+	Operator< T >* m_firstOperand;
 
-	const Operator< T >* m_secondOperand;
+	Operator< T >* m_secondOperand;
 
 };

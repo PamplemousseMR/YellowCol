@@ -6,7 +6,7 @@
 #include <string>
 
 template< typename T >
-DualOperator< T >::DualOperator(const DUAL_INSTRUCTION& _instruction, const Operator< T >* const _firsOperand, const Operator< T >* const _secondOperand) :
+DualOperator< T >::DualOperator(const DUAL_INSTRUCTION& _instruction, Operator< T >* _firsOperand, Operator< T >* _secondOperand) :
 	Operator< T >(),
 	m_instruction(_instruction),
 	m_firstOperand(_firsOperand),
@@ -108,7 +108,31 @@ T DualOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 template< typename T >
 long long DualOperator< T >::getNumberOfChildOperator() const
 {
-	return m_firstOperand->getNumberOfChildOperator() + m_secondOperand->getNumberOfChildOperator() + 1;;
+	return m_firstOperand->getNumberOfChildOperator() + m_secondOperand->getNumberOfChildOperator() + 1;
+}
+
+template< typename T >
+int DualOperator< T >::getNumberOfOperator() const
+{
+	return 2;
+}
+
+template< typename T >
+Operator< T >* DualOperator< T >::operator[](long long _value)
+{
+	long long nbChild = m_firstOperand->getNumberOfChildOperator();
+	if(_value <= 0)
+	{
+		return this;
+	} 
+	else if(_value <= nbChild)
+	{
+		return (*m_firstOperand)[_value-1];
+	}
+	else
+	{
+		return (*m_secondOperand)[_value-nbChild-1];
+	}
 }
 
 template< typename T >
@@ -121,24 +145,24 @@ std::string DualOperator< T >::print() const
 	switch(m_instruction)
 	{
 		case DUAL_INSTRUCTION::ADDITION :
-			before = "";
+			before = "(";
 			between = "+";
-			after = "";
+			after = ")";
 			break;
 		case DUAL_INSTRUCTION::SUBTRACTION :
-			before = "";
+			before = "(";
 			between = "-";
-			after = "";
+			after = ")";
 			break;
 		case DUAL_INSTRUCTION::MULTIPLICATION :
-			before = "";
+			before = "(";
 			between = "*";
-			after = "";
+			after = ")";
 			break;
 		case DUAL_INSTRUCTION::DIVISION :
-			before = "";
+			before = "(";
 			between = "/";
-			after = "";
+			after = ")";
 			break;
 		case DUAL_INSTRUCTION::MINIMUM :
 			before = "min(";

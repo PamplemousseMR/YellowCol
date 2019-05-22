@@ -7,7 +7,7 @@
 #include <functional>
 
 template< typename T >
-MonoOperator< T >::MonoOperator(const MONO_INSTRUCTION& _instruction, Operator< T >* const _operand) :
+MonoOperator< T >::MonoOperator(const MONO_INSTRUCTION& _instruction, Operator< T >* _operand) :
 	Operator< T >(),
 	m_instruction(_instruction),
 	m_operator(_operand)
@@ -83,6 +83,25 @@ template< typename T >
 long long MonoOperator< T >::getNumberOfChildOperator() const
 {
 	return m_operator->getNumberOfChildOperator() + 1;
+}
+
+template< typename T >
+int MonoOperator< T >::getNumberOfOperator() const
+{
+	return 1;
+}
+
+template< typename T >
+Operator< T >* MonoOperator< T >::operator[](long long _value)
+{
+	if(_value <= 0)
+	{
+		return this;
+	}
+	else
+	{
+		return (*m_operator)[_value-1];
+	}
 }
 
 template< typename T >

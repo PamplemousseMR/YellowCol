@@ -32,6 +32,10 @@ public:
 	
 	virtual long long getNumberOfChildOperator() const override;
 
+	virtual int getNumberOfOperator() const override;
+
+	virtual Operator< T >* operator[](long long) override;
+
 	virtual std::string print() const override;
 
 private:

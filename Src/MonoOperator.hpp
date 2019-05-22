@@ -16,7 +16,7 @@ class MonoOperator : public Operator< T >
 
 public:
 
-	MonoOperator(const MONO_INSTRUCTION&, Operator< T >* const);
+	MonoOperator(const MONO_INSTRUCTION&, Operator< T >*);
 
 	~MonoOperator();
 
@@ -32,13 +32,17 @@ public:
 	
 	virtual long long getNumberOfChildOperator() const override;
 
+	virtual int getNumberOfOperator() const override;
+
+	virtual Operator< T >* operator[](long long) override;
+
 	virtual std::string print() const override;
 
 private:
 
 	const MONO_INSTRUCTION m_instruction;
 	
-	const Operator< T >* m_operator;
+	Operator< T >* m_operator;
 
 
 };

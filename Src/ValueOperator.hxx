@@ -49,6 +49,25 @@ long long ValueOperator< T >::getNumberOfChildOperator() const
 }
 
 template< typename T >
+int ValueOperator< T >::getNumberOfOperator() const
+{
+	return 0;
+}
+
+template< typename T >
+Operator< T >* ValueOperator< T >::operator[](long long _value)
+{
+	if(_value <= 0)
+	{
+		return this;
+	}
+	else
+	{
+		throw std::invalid_argument("Unknow index");
+	}
+}
+
+template< typename T >
 std::string ValueOperator< T >::print() const
 {
 	std::string value = "";

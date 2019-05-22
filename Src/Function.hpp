@@ -10,7 +10,7 @@ class Function
 
 public:
 
-	Function(const Operator< T >* const);
+	Function(Operator< T >*);
 
 	~Function();
 
@@ -28,6 +28,8 @@ public:
 
 	long long getNumberOfChildOperator() const;
 
+	Operator< T >* getOperator() const;
+
 	friend std::ostream& operator <<(std::ostream& _o, const Function& _t)
 	{
 		return _o << _t.m_operator->print();
@@ -35,6 +37,6 @@ public:
 
 private:
 
-	const Operator< T >* m_operator;	
+	Operator< T >* m_operator;	
 
 };

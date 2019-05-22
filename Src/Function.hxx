@@ -9,7 +9,7 @@
 #include <string>
 
 template< typename T >
-Function< T >::Function(const Operator< T >* const _operator) :
+Function< T >::Function(Operator< T >* _operator) :
 	m_operator(_operator)
 {
 }
@@ -59,6 +59,12 @@ template< typename T >
 long long Function< T >::getNumberOfChildOperator() const
 {
 	return m_operator->getNumberOfChildOperator();
+}
+
+template< typename T >
+Operator< T >* Function< T >::getOperator() const
+{
+	return m_operator;
 }
 
 template< typename T >

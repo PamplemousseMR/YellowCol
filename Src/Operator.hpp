@@ -24,6 +24,10 @@ public:
 
 	virtual long long getNumberOfChildOperator() const = 0;
 	
+	virtual int getNumberOfOperator() const = 0;
+
+	virtual Operator< T >* operator[](long long) = 0;
+
 	virtual std::string print() const = 0;
 
 };
