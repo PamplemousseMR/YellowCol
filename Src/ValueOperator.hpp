@@ -20,6 +20,8 @@ public:
 
 	ValueOperator(const ARGUMENT&);
 
+	~ValueOperator();
+
 	ValueOperator(const ValueOperator&) = default;
 
 	ValueOperator& operator=(const ValueOperator&) = delete;
@@ -36,10 +38,12 @@ public:
 
 	virtual Operator< T >* operator[](long long) override;
 
+	virtual void setOperator(long long, Operator< T >*);
+
 	virtual std::string print() const override;
 
 private:
 
-	const ARGUMENT m_arg;
+	ARGUMENT m_arg;
 
 };

@@ -8,6 +8,8 @@ class Operator
 
 public:
 
+	static Operator< T >* copy(const Operator< T >*);
+
 	Operator() = default;
 
 	virtual ~Operator() = default;
@@ -27,6 +29,8 @@ public:
 	virtual int getNumberOfOperator() const = 0;
 
 	virtual Operator< T >* operator[](long long) = 0;
+
+	virtual void setOperator(long long, Operator< T >*) = 0;
 
 	virtual std::string print() const = 0;
 

@@ -48,6 +48,11 @@ MonoOperator< T >::MonoOperator(const MonoOperator& _f) :
 			return;
 		}
 	}
+
+	if(m_operator == nullptr)
+	{
+			throw std::invalid_argument("Unknow operator");
+	}
 }
 
 template< typename T >
@@ -101,6 +106,20 @@ Operator< T >* MonoOperator< T >::operator[](long long _value)
 	else
 	{
 		return (*m_operator)[_value-1];
+	}
+}
+
+template< typename T >
+void MonoOperator< T >::setOperator(long long _value, Operator< T >* _operator)
+{
+	if(_value <= 0)
+	{
+		delete m_operator;
+		m_operator = _operator;
+	} 
+	else
+	{
+		m_operator->setOperator(_value-1, _operator);
 	}
 }
 

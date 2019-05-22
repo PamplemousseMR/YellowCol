@@ -30,6 +30,8 @@ public:
 
 	Operator< T >* getOperator() const;
 
+	void setOperator(long long, Operator< T >*);
+
 	friend std::ostream& operator <<(std::ostream& _o, const Function& _t)
 	{
 		return _o << _t.m_operator->print();

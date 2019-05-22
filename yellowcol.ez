@@ -4,6 +4,7 @@
 #include <cstdlib>
 
 #include "Src/Operator.hpp"
+#include "Src/Operator.hxx"
 #include "Src/Function.hpp"
 #include "Src/Function.hxx"
 #include "Src/ValueOperator.hpp"
@@ -21,6 +22,31 @@ vector< vector< float > > s_table;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \User functions:
+	Operator< float >* generateTree(int _maxDepth)
+	{
+		Operator< float >* op = nullptr;
+		if(_maxDepth == 1)
+		{
+			op = new ValueOperator< float >(static_cast< ARGUMENT >(random(0, 6)));
+		}
+		else
+		{
+			int type = random(0, 3);
+			if(type == 0)
+			{
+				op = new ValueOperator< float >(static_cast< ARGUMENT >(random(0, 6)));
+			}
+			else if(type == 1)
+			{
+				op = new MonoOperator< float >(static_cast< MONO_INSTRUCTION >(random(0, 5)), generateTree(_maxDepth-1));
+			}
+			else
+			{
+				op = new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(random(0, 6)), generateTree(_maxDepth-1), generateTree(_maxDepth-1));
+			}
+		}
+		return op;
+	}
 \end
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -70,6 +96,7 @@ vector< vector< float > > s_table;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \At the end of each generation function:
+	bBest->printOn(std::cout);
 \end
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -91,32 +118,20 @@ vector< vector< float > > s_table;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \GenomeClass::display:
-	std::cout << "Display" << std::endl;
+	const Function< float >& function = *(Function< float >*)Genome.m_function;
+	std::cout << function << std::endl;
 \end
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \GenomeClass::initialiser:	
-	try{
-		Operator< float >* op = nullptr;
-
-		const bool mono = static_cast< bool >(random(0, 2));
-		if(mono)
-		{
-			ValueOperator< float >* value = new ValueOperator< float >(static_cast< ARGUMENT >(random(0, 6)));
-			op = new MonoOperator< float >(static_cast< MONO_INSTRUCTION >(random(0, 5)), value);
-		}
-		else
-		{
-			ValueOperator< float >* value1 = new ValueOperator< float >(static_cast< ARGUMENT >(random(0, 6)));
-			ValueOperator< float >* value2 = new ValueOperator< float >(static_cast< ARGUMENT >(random(0, 6)));
-			op = new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(random(0, 6)), value1, value2);
-		}
+	try
+	{
+		Operator< float >* op = generateTree(random(1, 6));		
 
 		Function< float >& function = *(new Function< float >(op));
 		Genome.m_function = &function;
-		std::cout << "Initialiser " << function << " = " << function.compute(1,1,1,1,1,1) << std::endl;
 	} 
 	catch(const std::exception& _e)
 	{
@@ -129,19 +144,27 @@ vector< vector< float > > s_table;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \GenomeClass::crossover:
-	try{
-		const Function< float >& firstParent = *(Function< float >*)parent1.m_function;
-		const Function< float >& secondParent = *(Function< float >*)parent2.m_function;
-		
-		long int nLocus = random(0, 101);
-		long long firstNode = (nLocus/100.0) * (firstParent.getNumberOfChildOperator()-1);
-		long long secondNode = (nLocus/100.0) * (secondParent.getNumberOfChildOperator()-1);
+	try
+	{
+		const Function< float >& firstFunction = *(Function< float >*)parent1.m_function;
+		const Function< float >& secondFunction = *(Function< float >*)parent2.m_function;
+		Function< float >& childFunction = *(Function< float >*)child.m_function;
+
+		int percent = random(0, 101);
+		long long firstNode = (percent/100.0) * (firstFunction.getNumberOfChildOperator()-1);
+		long long secondNode = (percent/100.0) * (secondFunction.getNumberOfChildOperator()-1);
 	  	
-	  	Operator< float >* currentOperator = firstParent.getOperator();
+	  	Operator< float >* secondOperator = (*secondFunction.getOperator())[secondNode];
 
-	  	//child.x[i]=parent2.x[i];
+	    Operator< float >* copy = Operator< float>::copy(secondOperator);
 
-  		//std::cout << "Crossover " << firstParent << " = " << firstParent.compute(1,1,1,1,1,1) << std::endl;
+		try{
+  			childFunction.setOperator(firstNode, copy);
+  		}
+  		catch(...)
+  		{
+  			childFunction.setOperator(firstNode-1, copy);	
+  		}
 	} 
 	catch(const std::exception& _e)
 	{
@@ -161,8 +184,16 @@ vector< vector< float > > s_table;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \GenomeClass::evaluator:
-	Function< float >* function = (Function< float >*)Genome.m_function;
-	return function->bench(s_table);
+	try
+	{
+		Function< float >* function = (Function< float >*)Genome.m_function;
+		return function->bench(s_table);
+	}
+	catch(const std::exception& _e)
+	{
+		std::cerr << "Crossover error : " << _e.what() << std::endl;
+		std::exit(1);
+	}
 \end
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -178,7 +209,7 @@ vector< vector< float > > s_table;
 \Default run parameters :         // Please let the parameters appear in this order
 Number of generations : 1000     // NB_GEN
 Time limit: 0                     // In seconds, 0 to deactivate
-Population size : 300             // POP_SIZE
+Population size : 10000             // POP_SIZE
 Offspring size : 90%             // 40% 
 Mutation probability : 0.4        // MUT_PROB
 Crossover probability : 1         // XOVER_PROB

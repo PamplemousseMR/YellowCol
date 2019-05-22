@@ -68,6 +68,20 @@ Operator< T >* Function< T >::getOperator() const
 }
 
 template< typename T >
+void Function< T >::setOperator(long long _value, Operator< T >* _operator)
+{
+	if(_value <= 0)
+	{
+		delete m_operator;
+		m_operator = _operator;
+	} 
+	else
+	{
+		m_operator->setOperator(_value-1, _operator);
+	}
+}
+
+template< typename T >
 T Function< T >::bench(vector< vector< T > > _table) const
 {
 	float n = (float)_table.size();
@@ -80,5 +94,5 @@ T Function< T >::bench(vector< vector< T > > _table) const
 		}
 		sum += temp*temp;
 	}
-	return std::sqrt(1/n*sum);
+	return std::sqrt((1/n)*sum);
 }

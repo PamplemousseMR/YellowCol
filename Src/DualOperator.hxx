@@ -47,6 +47,11 @@ DualOperator< T >::DualOperator(const DualOperator& _f) :
 		}
 	}
 
+	if(m_firstOperand == nullptr)
+	{
+			throw std::invalid_argument("Unknow operator");
+	}
+
 	{
 		const ValueOperator< T >* const test = dynamic_cast<  const ValueOperator< T >* const >(_f.m_secondOperand);
 		if(test)
@@ -70,6 +75,11 @@ DualOperator< T >::DualOperator(const DualOperator& _f) :
 			m_secondOperand = new DualOperator< T >(*test);
 			return;
 		}
+	}
+
+	if(m_secondOperand == nullptr)
+	{
+			throw std::invalid_argument("Unknow operator");
 	}
 }
 
@@ -132,6 +142,30 @@ Operator< T >* DualOperator< T >::operator[](long long _value)
 	else
 	{
 		return (*m_secondOperand)[_value-nbChild-1];
+	}
+}
+
+template< typename T >
+void DualOperator< T >::setOperator(long long _value, Operator< T >* _operator)
+{
+	long long nbChild = m_firstOperand->getNumberOfChildOperator();
+	if(_value <= 0)
+	{
+		delete m_firstOperand;
+		m_firstOperand = _operator;
+	} 
+	else if(_value == 1)
+	{
+		delete m_secondOperand;
+		m_secondOperand = _operator;
+	}
+	else if(_value <= nbChild-1)
+	{
+		return m_firstOperand->setOperator(_value-2, _operator);
+	}
+	else
+	{
+		return m_secondOperand->setOperator(_value-nbChild-2, _operator);
 	}
 }
 

@@ -12,6 +12,11 @@ ValueOperator< T >::ValueOperator(const ARGUMENT& _arg) :
 }
 
 template< typename T >
+ValueOperator< T >::~ValueOperator()
+{
+}
+
+template< typename T >
 T ValueOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 {
 	T result = 0;
@@ -65,6 +70,18 @@ Operator< T >* ValueOperator< T >::operator[](long long _value)
 	{
 		throw std::invalid_argument("Unknow index");
 	}
+}
+
+template< typename T >
+void ValueOperator< T >::setOperator(long long, Operator< T >* _operator)
+{
+	const ValueOperator< T >* const test = dynamic_cast<  const ValueOperator< T >* const >(_operator);
+	if(test)
+	{
+		m_arg = test->m_arg;
+		return;
+	}
+	throw std::invalid_argument("Can't change this operator");
 }
 
 template< typename T >
