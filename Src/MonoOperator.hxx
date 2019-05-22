@@ -80,9 +80,9 @@ T MonoOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 }
 
 template< typename T >
-long long MonoOperator< T >::getNumberOfOperator() const
+long long MonoOperator< T >::getNumberOfChildOperator() const
 {
-	return m_operator->getNumberOfOperator() + 1;
+	return m_operator->getNumberOfChildOperator() + 1;
 }
 
 template< typename T >

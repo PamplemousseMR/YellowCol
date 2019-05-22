@@ -26,7 +26,7 @@ public:
 	
 	T bench(vector< vector< T > >) const;
 
-	long long getNumberOfOperator() const;
+	long long getNumberOfChildOperator() const;
 
 	friend std::ostream& operator <<(std::ostream& _o, const Function& _t)
 	{

@@ -120,7 +120,7 @@ vector< vector< float > > s_table;
 	} 
 	catch(const std::exception& _e)
 	{
-		std::cerr << "error : " << _e.what() << std::endl;
+		std::cerr << "Initialiser error : " << _e.what() << std::endl;
 		std::exit(1);
 	}
 \end
@@ -129,14 +129,28 @@ vector< vector< float > > s_table;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \GenomeClass::crossover:
-	const Function< float >& firstParent = *(Function< float >*)parent1.m_function;
-	//const Function< float >& secondParent = *(Function< float >*)parent2.m_function;
-	std::cout << "Crossover " << firstParent << " = " << firstParent.compute(1,1,1,1,1,1) << std::endl;
-	
-	//long int nLocus = random(0, 101);
+	try{
+		const Function< float >& firstParent = *(Function< float >*)parent1.m_function;
+		const Function< float >& secondParent = *(Function< float >*)parent2.m_function;
+		
+		long int nLocus = random(0, 101);
+		long long firstPercent = (nLocus/100.0) * firstParent.getNumberOfChildOperator();
+		long long secondPercent = (nLocus/100.0) * secondParent.getNumberOfChildOperator();
+	  	
+		for(int i=0 ; i<firstPercent ; ++i)
+		{
+			//child.m_function
+		}
 
-  	//for (int i = nLocus; i<SIZE; i++) child.x[i]=parent2.x[i];
-	//std::exit(1);
+	  	//child.x[i]=parent2.x[i];
+
+  		std::cout << "Crossover " << firstParent << " = " << firstParent.compute(1,1,1,1,1,1) << std::endl;
+	} 
+	catch(const std::exception& _e)
+	{
+		std::cerr << "Crossover error : " << _e.what() << std::endl;
+		std::exit(1);
+	}
 \end
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------

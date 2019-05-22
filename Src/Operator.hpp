@@ -22,7 +22,7 @@ public:
 
 	virtual T compute(T, T, T, T ,T, T) const = 0;
 
-	virtual long long getNumberOfOperator() const = 0;
+	virtual long long getNumberOfChildOperator() const = 0;
 	
 	virtual std::string print() const = 0;
 

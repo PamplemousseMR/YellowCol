@@ -56,9 +56,9 @@ T Function< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 }
 
 template< typename T >
-long long Function< T >::getNumberOfOperator() const
+long long Function< T >::getNumberOfChildOperator() const
 {
-	return m_operator->getNumberOfOperator();
+	return m_operator->getNumberOfChildOperator();
 }
 
 template< typename T >

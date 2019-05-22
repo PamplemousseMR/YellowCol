@@ -106,9 +106,9 @@ T DualOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 }
 
 template< typename T >
-long long DualOperator< T >::getNumberOfOperator() const
+long long DualOperator< T >::getNumberOfChildOperator() const
 {
-	return m_firstOperand->getNumberOfOperator() + m_secondOperand->getNumberOfOperator() + 1;;
+	return m_firstOperand->getNumberOfChildOperator() + m_secondOperand->getNumberOfChildOperator() + 1;;
 }
 
 template< typename T >

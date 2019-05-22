@@ -43,7 +43,7 @@ T ValueOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 }
 
 template< typename T >
-long long ValueOperator< T >::getNumberOfOperator() const
+long long ValueOperator< T >::getNumberOfChildOperator() const
 {
 	return 1;
 }

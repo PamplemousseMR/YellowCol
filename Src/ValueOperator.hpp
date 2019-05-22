@@ -30,7 +30,7 @@ public:
 
 	virtual T compute(T, T, T, T ,T, T) const override;
 	
-	virtual long long getNumberOfOperator() const override;
+	virtual long long getNumberOfChildOperator() const override;
 
 	virtual std::string print() const override;
 
