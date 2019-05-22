@@ -118,9 +118,9 @@ vector< vector< float > > s_table;
 		Genome.m_function = &function;
 		std::cout << "Initialiser " << function << " = " << function.compute(1,1,1,1,1,1) << std::endl;
 	} 
-	catch(char const* _e)
+	catch(const std::exception& _e)
 	{
-		std::cerr << "error : " << _e << std::endl;
+		std::cerr << "error : " << _e.what() << std::endl;
 		std::exit(1);
 	}
 \end

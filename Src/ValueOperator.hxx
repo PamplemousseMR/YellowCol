@@ -36,7 +36,7 @@ T ValueOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 			result = _f;
 			break;
 		default:
-			throw "Unknow instruction";
+			throw std::invalid_argument("Unknow instruction");
 			break;
 	}
 	return result;
@@ -73,7 +73,7 @@ std::string ValueOperator< T >::print() const
 			value = "F";
 			break;
 		default:
-			throw "Unknow instruction";
+			throw std::invalid_argument("Unknow instruction");
 			break;
 	}
 	

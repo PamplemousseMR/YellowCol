@@ -98,7 +98,7 @@ T DualOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 			result = std::max(m_firstOperand->compute(_a, _b, _c, _d, _e, _f), m_secondOperand->compute(_a, _b, _c, _d, _e, _f));
 			break;
 		default :
-			throw "Unknow instruction";
+			throw std::invalid_argument("Unknow instruction");
 			break;
 	}
 
@@ -151,7 +151,7 @@ std::string DualOperator< T >::print() const
 			after = ")";
 			break;
 		default :
-			throw "Unknow instruction";
+			throw std::invalid_argument("Unknow instruction");
 			break;
 	}
 	
