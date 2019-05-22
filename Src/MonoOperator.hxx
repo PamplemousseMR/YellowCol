@@ -1,8 +1,10 @@
-#include <string>
-#include <functional>
+#pragma once
 
 #include "MonoOperator.hpp"
 #include "DualOperator.hpp"
+
+#include <string>
+#include <functional>
 
 template< typename T >
 MonoOperator< T >::MonoOperator(const MONO_INSTRUCTION& _instruction, Operator< T >* const _operand) :

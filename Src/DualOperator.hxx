@@ -1,7 +1,9 @@
-#include <string>
+#pragma once
 
 #include "DualOperator.hpp"
 #include "MonoOperator.hpp"
+
+#include <string>
 
 template< typename T >
 DualOperator< T >::DualOperator(const DUAL_INSTRUCTION& _instruction, const Operator< T >* const _firsOperand, const Operator< T >* const _secondOperand) :

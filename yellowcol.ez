@@ -5,7 +5,9 @@
 
 #include "Src/Operator.hpp"
 #include "Src/Function.hpp"
+#include "Src/Function.hxx"
 #include "Src/ValueOperator.hpp"
+#include "Src/ValueOperator.hxx"
 #include "Src/MonoOperator.hpp"
 #include "Src/MonoOperator.hxx"
 #include "Src/DualOperator.hpp"
