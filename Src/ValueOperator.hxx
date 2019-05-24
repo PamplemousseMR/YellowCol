@@ -66,7 +66,8 @@ template< typename T >
 void ValueOperator< T >::mutate(int _rand)
 {
 	int rand = globalRandomGenerator->random(0, 10001);
-	if(rand < _rand){
+	if(rand < _rand)
+	{
 		m_value = static_cast <float> (std::rand()) / static_cast <float> (RAND_MAX);
 	}
 }
