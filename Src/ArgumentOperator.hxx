@@ -12,11 +12,6 @@ ArgumentOperator< T >::ArgumentOperator(const ARGUMENT& _arg) :
 }
 
 template< typename T >
-ArgumentOperator< T >::~ArgumentOperator()
-{
-}
-
-template< typename T >
 T ArgumentOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 {
 	T result = 0;

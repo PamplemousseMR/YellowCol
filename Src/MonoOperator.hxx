@@ -2,6 +2,7 @@
 
 #include "MonoOperator.hpp"
 #include "DualOperator.hpp"
+#include "ValueOperator.hpp"
 
 #include <string>
 #include <functional>
@@ -48,10 +49,18 @@ MonoOperator< T >::MonoOperator(const MonoOperator& _f) :
 			return;
 		}
 	}
+	{
+		const ValueOperator< T >* const test = dynamic_cast<  const ValueOperator< T >* const >(_f.m_operator);
+		if(test)
+		{
+			m_operator = new ValueOperator< T >(*test);
+			return;
+		}
+	}
 
 	if(m_operator == nullptr)
 	{
-			throw std::invalid_argument("Unknow operator");
+		throw std::invalid_argument("Unknow operator");
 	}
 }
 

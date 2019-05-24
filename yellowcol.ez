@@ -13,6 +13,8 @@
 #include "Src/MonoOperator.hxx"
 #include "Src/DualOperator.hpp"
 #include "Src/DualOperator.hxx"
+#include "Src/ValueOperator.hpp"
+#include "Src/ValueOperator.hxx"
 
 vector< vector< float > > s_table;
 
@@ -27,14 +29,30 @@ vector< vector< float > > s_table;
 		Operator< float >* op = nullptr;
 		if(_maxDepth == 1)
 		{
-			op = new ArgumentOperator< float >(static_cast< ARGUMENT >(random(0, 6)));
+			bool isValue = static_cast<bool>(random(0, 2));
+			if(isValue)
+			{
+				op = new ValueOperator< float >(static_cast <float> (rand()) / static_cast <float> (RAND_MAX));
+			}
+			else
+			{
+				op = new ArgumentOperator< float >(static_cast< ARGUMENT >(random(0, 6)));		
+			}
 		}
 		else
 		{
 			int type = random(0, 3);
 			if(type == 0)
 			{
-				op = new ArgumentOperator< float >(static_cast< ARGUMENT >(random(0, 6)));
+				bool isValue = static_cast<bool>(random(0, 2));
+				if(isValue)
+				{
+					op = new ValueOperator< float >(static_cast <float> (rand()) / static_cast <float> (RAND_MAX));
+				}
+				else
+				{
+					op = new ArgumentOperator< float >(static_cast< ARGUMENT >(random(0, 6)));		
+				}
 			}
 			else if(type == 1)
 			{

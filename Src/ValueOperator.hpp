@@ -2,31 +2,21 @@
 
 #include "Operator.hpp"
 
-enum ARGUMENT
-{
-	A,
-	B,
-	C,
-	D,
-	E,
-	F
-};
-
 template< typename T >
-class ArgumentOperator : public Operator< T >
+class ValueOperator : public Operator< T >
 {
 
 public:
 
-	ArgumentOperator(const ARGUMENT&);
+	ValueOperator(const T&);
 
-	ArgumentOperator(const ArgumentOperator&) = default;
+	ValueOperator(const ValueOperator&) = default;
 
-	ArgumentOperator& operator=(const ArgumentOperator&) = delete;
+	ValueOperator& operator=(const ValueOperator&) = delete;
 
-	ArgumentOperator(ArgumentOperator&&) = delete;
+	ValueOperator(ValueOperator&&) = delete;
 
-	ArgumentOperator& operator=(ArgumentOperator&&) = delete;
+	ValueOperator& operator=(ValueOperator&&) = delete;
 
 	virtual T compute(T, T, T, T ,T, T) const override;
 	
@@ -42,6 +32,6 @@ public:
 
 private:
 
-	ARGUMENT m_arg;
+	T m_value;
 
 };

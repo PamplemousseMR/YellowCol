@@ -2,6 +2,7 @@
 
 #include "DualOperator.hpp"
 #include "MonoOperator.hpp"
+#include "ValueOperator.hpp"
 
 #include <string>
 
@@ -46,6 +47,13 @@ DualOperator< T >::DualOperator(const DualOperator& _f) :
 			m_firstOperand = new DualOperator< T >(*test);
 		}
 	}
+	{
+		const ValueOperator< T >* const test = dynamic_cast<  const ValueOperator< T >* const >(_f.m_firstOperand);
+		if(test)
+		{
+			m_firstOperand = new ValueOperator< T >(*test);
+		}
+	}
 
 	if(m_firstOperand == nullptr)
 	{
@@ -73,6 +81,14 @@ DualOperator< T >::DualOperator(const DualOperator& _f) :
 		if(test)
 		{
 			m_secondOperand = new DualOperator< T >(*test);
+			return;
+		}
+	}
+	{
+		const ValueOperator< T >* const test = dynamic_cast<  const ValueOperator< T >* const >(_f.m_secondOperand);
+		if(test)
+		{
+			m_secondOperand = new ValueOperator< T >(*test);
 			return;
 		}
 	}
