@@ -135,6 +135,7 @@ void MonoOperator< T >::setOperator(long long _value, Operator< T >* _operator)
 template< typename T >
 std::string MonoOperator< T >::print() const
 {
+	
 	std::string before = "";
 	std::string after = ""; 
 	switch(m_instruction)
@@ -164,4 +165,15 @@ std::string MonoOperator< T >::print() const
 			break;
 	}
 	return before + m_operator->print() + after ;
+}
+
+template< typename T >
+void MonoOperator< T >::mutate(int _rand)
+{
+	int rand = globalRandomGenerator->random(0, 10001);
+	if(rand < _rand){
+		m_instruction = static_cast< MONO_INSTRUCTION >(globalRandomGenerator->random(0, 5));
+		
+	}
+	m_operator->mutate(_rand);
 }

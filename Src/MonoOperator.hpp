@@ -37,12 +37,14 @@ public:
 	virtual Operator< T >* operator[](long long) override;
 
 	virtual void setOperator(long long, Operator< T >*);
+	
+	virtual void mutate(int);
 
 	virtual std::string print() const override;
 
 private:
 
-	const MONO_INSTRUCTION m_instruction;
+	MONO_INSTRUCTION m_instruction;
 	
 	Operator< T >* m_operator {nullptr};
 

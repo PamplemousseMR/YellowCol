@@ -110,3 +110,12 @@ std::string ArgumentOperator< T >::print() const
 	
 	return value ;
 }
+
+template< typename T >
+void ArgumentOperator< T >::mutate(int _rand)
+{
+	int rand = globalRandomGenerator->random(0, 10001);
+	if(rand < _rand){
+		m_arg = static_cast< ARGUMENT >(globalRandomGenerator->random(0, 6));		
+	}
+}

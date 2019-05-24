@@ -191,6 +191,10 @@ vector< vector< float > > s_table;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \GenomeClass::mutator:
+	
+  	Function< float >& function = *(Function< float >*)Genome.m_function;
+	int rand = random(0, 1001);
+	function.mutate(rand);
   	return 1;
 \end
 

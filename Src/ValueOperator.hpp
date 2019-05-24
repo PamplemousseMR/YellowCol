@@ -27,6 +27,8 @@ public:
 	virtual Operator< T >* operator[](long long) override;
 
 	virtual void setOperator(long long, Operator< T >*);
+	
+	virtual void mutate(int);
 
 	virtual std::string print() const override;
 

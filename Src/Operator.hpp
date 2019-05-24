@@ -31,6 +31,8 @@ public:
 	virtual Operator< T >* operator[](long long) = 0;
 
 	virtual void setOperator(long long, Operator< T >*) = 0;
+	
+	virtual void mutate(int) = 0;
 
 	virtual std::string print() const = 0;
 

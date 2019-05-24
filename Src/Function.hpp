@@ -31,6 +31,8 @@ public:
 	Operator< T >* getOperator() const;
 
 	void setOperator(long long, Operator< T >*);
+	
+	void mutate(int);
 
 	friend std::ostream& operator <<(std::ostream& _o, const Function& _t)
 	{
