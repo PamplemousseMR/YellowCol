@@ -7,8 +7,8 @@
 #include "Src/Operator.hxx"
 #include "Src/Function.hpp"
 #include "Src/Function.hxx"
-#include "Src/ValueOperator.hpp"
-#include "Src/ValueOperator.hxx"
+#include "Src/ArgumentOperator.hpp"
+#include "Src/ArgumentOperator.hxx"
 #include "Src/MonoOperator.hpp"
 #include "Src/MonoOperator.hxx"
 #include "Src/DualOperator.hpp"
@@ -27,14 +27,14 @@ vector< vector< float > > s_table;
 		Operator< float >* op = nullptr;
 		if(_maxDepth == 1)
 		{
-			op = new ValueOperator< float >(static_cast< ARGUMENT >(random(0, 6)));
+			op = new ArgumentOperator< float >(static_cast< ARGUMENT >(random(0, 6)));
 		}
 		else
 		{
 			int type = random(0, 3);
 			if(type == 0)
 			{
-				op = new ValueOperator< float >(static_cast< ARGUMENT >(random(0, 6)));
+				op = new ArgumentOperator< float >(static_cast< ARGUMENT >(random(0, 6)));
 			}
 			else if(type == 1)
 			{

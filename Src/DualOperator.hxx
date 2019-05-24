@@ -26,10 +26,10 @@ DualOperator< T >::DualOperator(const DualOperator& _f) :
 	m_instruction(_f.m_instruction)
 {
 	{
-		const ValueOperator< T >* const test = dynamic_cast<  const ValueOperator< T >* const >(_f.m_firstOperand);
+		const ArgumentOperator< T >* const test = dynamic_cast<  const ArgumentOperator< T >* const >(_f.m_firstOperand);
 		if(test)
 		{
-			m_firstOperand = new ValueOperator< T >(*test);
+			m_firstOperand = new ArgumentOperator< T >(*test);
 		}
 	}
 	{
@@ -53,10 +53,10 @@ DualOperator< T >::DualOperator(const DualOperator& _f) :
 	}
 
 	{
-		const ValueOperator< T >* const test = dynamic_cast<  const ValueOperator< T >* const >(_f.m_secondOperand);
+		const ArgumentOperator< T >* const test = dynamic_cast<  const ArgumentOperator< T >* const >(_f.m_secondOperand);
 		if(test)
 		{
-			m_secondOperand = new ValueOperator< T >(*test);
+			m_secondOperand = new ArgumentOperator< T >(*test);
 			return;
 		}
 	}

@@ -1,23 +1,23 @@
 #pragma once
 
-#include "ValueOperator.hpp"
+#include "ArgumentOperator.hpp"
 
 #include <string>
 
 template< typename T >
-ValueOperator< T >::ValueOperator(const ARGUMENT& _arg) :
+ArgumentOperator< T >::ArgumentOperator(const ARGUMENT& _arg) :
 	Operator< T >(),
 	m_arg(_arg)
 {
 }
 
 template< typename T >
-ValueOperator< T >::~ValueOperator()
+ArgumentOperator< T >::~ArgumentOperator()
 {
 }
 
 template< typename T >
-T ValueOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
+T ArgumentOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 {
 	T result = 0;
 	switch(m_arg)
@@ -48,19 +48,19 @@ T ValueOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 }
 
 template< typename T >
-long long ValueOperator< T >::getNumberOfChildOperator() const
+long long ArgumentOperator< T >::getNumberOfChildOperator() const
 {
 	return 1;
 }
 
 template< typename T >
-int ValueOperator< T >::getNumberOfOperator() const
+int ArgumentOperator< T >::getNumberOfOperator() const
 {
 	return 0;
 }
 
 template< typename T >
-Operator< T >* ValueOperator< T >::operator[](long long _value)
+Operator< T >* ArgumentOperator< T >::operator[](long long _value)
 {
 	if(_value <= 0)
 	{
@@ -73,9 +73,9 @@ Operator< T >* ValueOperator< T >::operator[](long long _value)
 }
 
 template< typename T >
-void ValueOperator< T >::setOperator(long long, Operator< T >* _operator)
+void ArgumentOperator< T >::setOperator(long long, Operator< T >* _operator)
 {
-	const ValueOperator< T >* const test = dynamic_cast<  const ValueOperator< T >* const >(_operator);
+	const ArgumentOperator< T >* const test = dynamic_cast<  const ArgumentOperator< T >* const >(_operator);
 	if(test)
 	{
 		m_arg = test->m_arg;
@@ -85,7 +85,7 @@ void ValueOperator< T >::setOperator(long long, Operator< T >* _operator)
 }
 
 template< typename T >
-std::string ValueOperator< T >::print() const
+std::string ArgumentOperator< T >::print() const
 {
 	std::string value = "";
 	switch(m_arg)

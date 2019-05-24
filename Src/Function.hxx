@@ -2,7 +2,7 @@
 
 #include "Function.hpp"
 #include "Operator.hpp"
-#include "ValueOperator.hpp"
+#include "ArgumentOperator.hpp"
 #include "MonoOperator.hpp"
 #include "DualOperator.hpp"
 
@@ -23,30 +23,7 @@ Function< T >::~Function()
 template< typename T >
 Function< T >::Function(const Function& _f)
 {
-	{
-		const ValueOperator< T >* const test = dynamic_cast<  const ValueOperator< T >* const >(_f.m_operator);
-		if(test)
-		{
-			m_operator = new ValueOperator< T >(*test);
-			return;
-		}
-	}
-	{
-		const MonoOperator< T >* const test = dynamic_cast<  const MonoOperator< T >* const >(_f.m_operator);
-		if(test)
-		{
-			m_operator = new MonoOperator< T >(*test);
-			return;
-		}
-	}
-	{
-		const DualOperator< T >* const test = dynamic_cast<  const DualOperator< T >* const >(_f.m_operator);
-		if(test)
-		{
-			m_operator = new DualOperator< T >(*test);
-			return;
-		}
-	}
+	m_operator = Operator< T >::copy(_f.m_operator);
 }
 
 template< typename T >

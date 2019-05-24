@@ -13,22 +13,22 @@ enum ARGUMENT
 };
 
 template< typename T >
-class ValueOperator : public Operator< T >
+class ArgumentOperator : public Operator< T >
 {
 
 public:
 
-	ValueOperator(const ARGUMENT&);
+	ArgumentOperator(const ARGUMENT&);
 
-	~ValueOperator();
+	~ArgumentOperator();
 
-	ValueOperator(const ValueOperator&) = default;
+	ArgumentOperator(const ArgumentOperator&) = default;
 
-	ValueOperator& operator=(const ValueOperator&) = delete;
+	ArgumentOperator& operator=(const ArgumentOperator&) = delete;
 
-	ValueOperator(ValueOperator&&) = delete;
+	ArgumentOperator(ArgumentOperator&&) = delete;
 
-	ValueOperator& operator=(ValueOperator&&) = delete;
+	ArgumentOperator& operator=(ArgumentOperator&&) = delete;
 
 	virtual T compute(T, T, T, T ,T, T) const override;
 	

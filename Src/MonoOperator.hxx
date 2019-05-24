@@ -25,10 +25,10 @@ MonoOperator< T >::MonoOperator(const MonoOperator& _f) :
 	m_instruction(_f.m_instruction)
 {
 	{
-		const ValueOperator< T >* const test = dynamic_cast<  const ValueOperator< T >* const >(_f.m_operator);
+		const ArgumentOperator< T >* const test = dynamic_cast<  const ArgumentOperator< T >* const >(_f.m_operator);
 		if(test)
 		{
-			m_operator = new ValueOperator< T >(*test);
+			m_operator = new ArgumentOperator< T >(*test);
 			return;
 		}
 	}

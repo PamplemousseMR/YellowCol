@@ -2,7 +2,7 @@
 
 #include "Operator.hpp"
 
-#include "ValueOperator.hpp"
+#include "ArgumentOperator.hpp"
 #include "MonoOperator.hpp"
 #include "DualOperator.hpp"
 
@@ -11,10 +11,10 @@ template< typename T >
 Operator< T >* Operator< T >::copy(const Operator< T >* _op)
 {
   	{
-		const ValueOperator< T >* const test = dynamic_cast<  const ValueOperator< T >* const >(_op);
+		const ArgumentOperator< T >* const test = dynamic_cast<  const ArgumentOperator< T >* const >(_op);
 		if(test)
 		{
-			return new ValueOperator< T >(*test);
+			return new ArgumentOperator< T >(*test);
 		}
 	}
 	{
