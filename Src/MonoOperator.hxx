@@ -171,9 +171,9 @@ template< typename T >
 void MonoOperator< T >::mutate(int _rand)
 {
 	int rand = globalRandomGenerator->random(0, 10001);
-	if(rand < _rand){
+	if(rand < _rand)
+	{
 		m_instruction = static_cast< MONO_INSTRUCTION >(globalRandomGenerator->random(0, 5));
-		
 	}
 	m_operator->mutate(_rand);
 }

@@ -75,6 +75,7 @@ T Function< T >::bench(vector< vector< T > > _table) const
 }
 
 template< typename T >
-void Function< T >::mutate(int _rand){
+void Function< T >::mutate(int _rand)
+{
 	m_operator->mutate(_rand);
 }
