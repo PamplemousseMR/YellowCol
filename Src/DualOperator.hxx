@@ -5,6 +5,7 @@
 #include "ValueOperator.hpp"
 
 #include <string>
+#include <stdexcept>
 
 template< typename T >
 DualOperator< T >::DualOperator(const DUAL_INSTRUCTION& _instruction, Operator< T >* _firsOperand, Operator< T >* _secondOperand) :

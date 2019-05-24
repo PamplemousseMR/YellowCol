@@ -3,6 +3,7 @@
 #include "ValueOperator.hpp"
 
 #include <string>
+#include <stdexcept>
 
 template< typename T >
 ValueOperator< T >::ValueOperator(const T& _value) :

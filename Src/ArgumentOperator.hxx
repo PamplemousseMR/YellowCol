@@ -3,6 +3,7 @@
 #include "ArgumentOperator.hpp"
 
 #include <string>
+#include <stdexcept>
 
 template< typename T >
 ArgumentOperator< T >::ArgumentOperator(const ARGUMENT& _arg) :

@@ -7,6 +7,8 @@
 #include "DualOperator.hpp"
 #include "ValueOperator.hpp"
 
+#include <stdexcept>
+
 template< typename T >
 Operator< T >* Operator< T >::copy(const Operator< T >* _op)
 {

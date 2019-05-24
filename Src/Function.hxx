@@ -7,6 +7,7 @@
 #include "DualOperator.hpp"
 
 #include <string>
+#include <stdexcept>
 
 template< typename T >
 Function< T >::Function(Operator< T >* _operator) :

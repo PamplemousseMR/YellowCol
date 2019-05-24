@@ -6,6 +6,7 @@
 
 #include <string>
 #include <functional>
+#include <stdexcept>
 
 template< typename T >
 MonoOperator< T >::MonoOperator(const MONO_INSTRUCTION& _instruction, Operator< T >* _operand) :
