@@ -239,7 +239,7 @@ void DualOperator< T >::mutate(int _rand)
 	int rand = globalRandomGenerator->random(0, 10001);
 	if(rand < _rand)
 	{
-		m_instruction = static_cast< DUAL_INSTRUCTION >(globalRandomGenerator->random(0, 6));
+		m_instruction = static_cast< DUAL_INSTRUCTION >(globalRandomGenerator->random(0, DUAL_INSTRUCTION_SIZE));
 	}
 	m_firstOperand->mutate(_rand);
 	m_secondOperand->mutate(_rand);

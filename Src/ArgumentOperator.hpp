@@ -9,7 +9,8 @@ enum ARGUMENT
 	C,
 	D,
 	E,
-	F
+	F,
+	ARGUMENT_SIZE
 };
 
 template< typename T >

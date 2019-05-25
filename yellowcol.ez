@@ -29,9 +29,9 @@ vector< vector< float > > s_table;
 		Operator< float >* op = nullptr;
 		if(_maxDepth == 1)
 		{
-			if(tossCoin(6.f/7.f))
+			if(random(0, 2))
 			{
-				op = new ArgumentOperator< float >(static_cast< ARGUMENT >(random(0, 6)));		
+				op = new ArgumentOperator< float >(static_cast< ARGUMENT >(random(0, ARGUMENT_SIZE)));		
 
 			}
 			else
@@ -48,11 +48,11 @@ vector< vector< float > > s_table;
 			}
 			else if(type == 1)
 			{
-				op = new MonoOperator< float >(static_cast< MONO_INSTRUCTION >(random(0, 5)), generateTree(_maxDepth-1));
+				op = new MonoOperator< float >(static_cast< MONO_INSTRUCTION >(random(0, MONO_INSTRUCTION_SIZE)), generateTree(_maxDepth-1));
 			}
 			else
 			{
-				op = new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(random(0, 6)), generateTree(_maxDepth-1), generateTree(_maxDepth-1));
+				op = new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(random(0, DUAL_INSTRUCTION_SIZE)), generateTree(_maxDepth-1), generateTree(_maxDepth-1));
 			}
 		}
 		return op;
@@ -224,8 +224,8 @@ vector< vector< float > > s_table;
 Number of generations : 1000     // NB_GEN
 Time limit: 0                     // In seconds, 0 to deactivate
 Population size : 10000             // POP_SIZE
-Offspring size : 90%             // 40% 
-Mutation probability : 0.4        // MUT_PROB
+Offspring size : 60%             // 40% 
+Mutation probability : 0.4       // MUT_PROB
 Crossover probability : 1         // XOVER_PROB
 Evaluator goal : minimise         // Maximise
 Selection operator: Tournament 2 
@@ -235,7 +235,7 @@ Reduce parents operator: Tournament 2
 Reduce offspring operator: Tournament 2
 Final reduce operator: Tournament 3
 
-Elitism: Weak                     // Weak or Strong
+Elitism: Strong                     // Weak or Strong
 Elite: 1
 Print stats: true                 // Default: 1
 Generate csv stats file:false
