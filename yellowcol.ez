@@ -125,7 +125,8 @@ vector< vector< float > > s_table;
 
 \GenomeClass::display:
 	const Function< float >& function = *(Function< float >*)Genome.m_function;
-	std::cout << function << std::endl;
+	std::cout << "	Best score : " << function.bench(s_table) << std::endl;
+	std::cout << "	Function " << function << std::endl;
 \end
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -183,7 +184,6 @@ vector< vector< float > > s_table;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \GenomeClass::mutator:
-	
   	Function< float >& function = *(Function< float >*)Genome.m_function;
 	int rand = random(0, 1001);
 	function.mutate(rand);
@@ -219,7 +219,7 @@ vector< vector< float > > s_table;
 \Default run parameters :         // Please let the parameters appear in this order
 Number of generations : 1000     // NB_GEN
 Time limit: 0                     // In seconds, 0 to deactivate
-Population size : 50000             // POP_SIZE
+Population size : 100000             // POP_SIZE
 Offspring size : 60%             // 40% 
 Mutation probability : 0.6      // MUT_PROB
 Crossover probability : 0.7         // XOVER_PROB
