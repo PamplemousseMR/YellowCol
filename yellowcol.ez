@@ -36,7 +36,7 @@ vector< vector< float > > s_table;
 			}
 			else
 			{
-				op = new ValueOperator< float >(static_cast <float> (std::rand()) / static_cast <float> (RAND_MAX));
+				op = new ValueOperator< float >(static_cast< float >(std::rand()) / static_cast< float >(RAND_MAX));
 			}
 		}
 		else
@@ -217,7 +217,7 @@ vector< vector< float > > s_table;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \Default run parameters :         // Please let the parameters appear in this order
-Number of generations : 1000     // NB_GEN
+Number of generations : 2000     // NB_GEN
 Time limit: 0                     // In seconds, 0 to deactivate
 Population size : 100000             // POP_SIZE
 Offspring size : 60%             // 40% 
