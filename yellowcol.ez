@@ -184,9 +184,17 @@ vector< vector< float > > s_table;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \GenomeClass::mutator:
-  	Function< float >& function = *(Function< float >*)Genome.m_function;
-	int rand = random(0, 1001);
-	function.mutate(rand);
+	try
+	{
+	  	Function< float >& function = *(Function< float >*)Genome.m_function;
+		int rand = random(0, 1001);
+		function.mutate(rand);
+	}
+	catch(const std::exception& _e)
+	{
+		std::cerr << "Mutator error : " << _e.what() << std::endl;
+		std::exit(1);
+	}
   	return 1;
 \end
 
@@ -201,7 +209,7 @@ vector< vector< float > > s_table;
 	}
 	catch(const std::exception& _e)
 	{
-		std::cerr << "Crossover error : " << _e.what() << std::endl;
+		std::cerr << "Evaluator error : " << _e.what() << std::endl;
 		std::exit(1);
 	}
 \end
