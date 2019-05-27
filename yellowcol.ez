@@ -17,7 +17,6 @@
 #include "Src/ValueOperator.hxx"
 
 vector< vector< float > > s_table;
-
 \end
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -134,7 +133,315 @@ vector< vector< float > > s_table;
 
 \GenomeClass::initialiser:	
 	try
-	{
+	{									
+		Function< float >* functionProf = new Function< float >(
+			new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(1),
+				new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0),
+					new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3), 
+						new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3),
+							new MonoOperator< float >(static_cast< MONO_INSTRUCTION >(1),
+								new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2),
+									new ValueOperator< float >(0.0256411),
+									new ArgumentOperator< float >(static_cast< ARGUMENT >(5))
+								)
+							),	
+							new MonoOperator< float >(static_cast< MONO_INSTRUCTION >(1),
+								new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0),
+									new ValueOperator< float >(0.434051),
+									new ArgumentOperator< float >(static_cast< ARGUMENT >(2))
+								)
+							)
+						), 
+						new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3),
+							new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3),
+								new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+									new ArgumentOperator< float >(static_cast< ARGUMENT >(0)), 
+									new ArgumentOperator< float >(static_cast< ARGUMENT >(5))
+								),
+								new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(1), 
+									new ArgumentOperator< float >(static_cast< ARGUMENT >(4)), 
+									new ArgumentOperator< float >(static_cast< ARGUMENT >(3))
+								)
+							),
+							new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0),
+								new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3), 
+									new ArgumentOperator< float >(static_cast< ARGUMENT >(1)), 
+									new ArgumentOperator< float >(static_cast< ARGUMENT >(4))
+								),
+								new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+									new ValueOperator< float >(0.0898232), 
+									new ArgumentOperator< float >(static_cast< ARGUMENT >(3))
+								)
+							)		
+						)
+					),
+					new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0),
+						new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3), 
+							new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2),
+								new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(1),
+									new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+										new ArgumentOperator< float >(static_cast< ARGUMENT >(4)), 
+										new ArgumentOperator< float >(static_cast< ARGUMENT >(4))
+									),
+									new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0), 
+										new ArgumentOperator< float >(static_cast< ARGUMENT >(1)), 
+										new ArgumentOperator< float >(static_cast< ARGUMENT >(5))
+									)
+								),
+								new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2),
+									new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(1), 
+										new ArgumentOperator< float >(static_cast< ARGUMENT >(2)), 
+										new ValueOperator< float >(0.128389)
+									),
+									new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+										new ValueOperator< float >(0.0259106), 
+										new ArgumentOperator< float >(static_cast< ARGUMENT >(2))
+									)
+								)		
+							), 
+							new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0),
+								new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(1),
+									new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3), 
+										new ArgumentOperator< float >(static_cast< ARGUMENT >(0)), 
+										new ArgumentOperator< float >(static_cast< ARGUMENT >(5))
+									),
+									new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0), 
+										new ArgumentOperator< float >(static_cast< ARGUMENT >(2)), 
+										new ArgumentOperator< float >(static_cast< ARGUMENT >(3))
+									)
+								),
+								new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3),
+									new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(1), 
+										new ArgumentOperator< float >(static_cast< ARGUMENT >(0)), 
+										new ArgumentOperator< float >(static_cast< ARGUMENT >(3))
+									),
+									new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0), 
+										new ArgumentOperator< float >(static_cast< ARGUMENT >(4)), 
+										new ValueOperator< float >(0.116845)
+									)
+								)		
+							)
+						),
+						new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(1),
+							new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(1), 
+								new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+									new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2),
+										new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(1),
+											new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0),
+												new ArgumentOperator< float >(static_cast< ARGUMENT >(5)),
+												new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3), 
+													new ArgumentOperator< float >(static_cast< ARGUMENT >(1)), 
+													new ValueOperator< float >(0.708854)
+												)
+											),
+											new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3),
+												new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+													new ArgumentOperator< float >(static_cast< ARGUMENT >(1)), 
+													new ArgumentOperator< float >(static_cast< ARGUMENT >(4))
+												),
+												new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(1), 
+													new ArgumentOperator< float >(static_cast< ARGUMENT >(3)), 
+													new ArgumentOperator< float >(static_cast< ARGUMENT >(5))
+												)
+											)		
+										),
+										new ValueOperator< float >(0.0173784)
+									), 
+									new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+										new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0),
+											new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2),
+												new ValueOperator< float >(0.000596634),
+												new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0),
+													new ArgumentOperator< float >(static_cast< ARGUMENT >(0)),
+													new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2),
+														new ArgumentOperator< float >(static_cast< ARGUMENT >(1)), 
+														new ArgumentOperator< float >(static_cast< ARGUMENT >(1))
+													)
+												)		
+											),
+											new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2),
+												new ValueOperator< float >(0.0087028),
+												new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0),
+													new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3), 
+														new ArgumentOperator< float >(static_cast< ARGUMENT >(3)), 
+														new ArgumentOperator< float >(static_cast< ARGUMENT >(4))
+													),
+													new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+														new ArgumentOperator< float >(static_cast< ARGUMENT >(4)), 
+														new ArgumentOperator< float >(static_cast< ARGUMENT >(4))
+													)
+												)		
+											)
+										), 
+										new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2),
+											new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0),
+												new MonoOperator< float >(static_cast< MONO_INSTRUCTION >(1),
+													new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+														new ValueOperator< float >(0.0234898), 
+														new ArgumentOperator< float >(static_cast< ARGUMENT >(5))
+													)
+												),
+												new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0),
+													new ValueOperator< float >(0.18091),
+													new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+														new ValueOperator< float >(0.0105248), 
+														new ArgumentOperator< float >(static_cast< ARGUMENT >(1))
+													)
+												)		
+											),
+											new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2),
+												new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3),
+													new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+														new ValueOperator< float >(0.0494235), 
+														new ValueOperator< float >(0.999395)
+													),
+													new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3), 
+														new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0), 
+															new ArgumentOperator< float >(static_cast< ARGUMENT >(2)), 
+															new ArgumentOperator< float >(static_cast< ARGUMENT >(2))
+														),
+														new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+															new ValueOperator< float >(0.256264), 
+															new ArgumentOperator< float >(static_cast< ARGUMENT >(3))
+														)
+													)
+												),
+												new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(1),
+													new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+														new ArgumentOperator< float >(static_cast< ARGUMENT >(5)), 
+														new ValueOperator< float >(0.0191166)
+													),
+													new ValueOperator< float >(0.779875)
+												)		
+											)
+										)
+									)
+								),
+								new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3),
+									new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3),
+										new MonoOperator< float >(static_cast< MONO_INSTRUCTION >(1),
+											new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+												new ValueOperator< float >(0.0236271), 
+												new ArgumentOperator< float >(static_cast< ARGUMENT >(5))
+											)
+										),
+										new MonoOperator< float >(static_cast< MONO_INSTRUCTION >(1),
+											new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0), 
+												new ArgumentOperator< float >(static_cast< ARGUMENT >(2)), 
+												new ArgumentOperator< float >(static_cast< ARGUMENT >(2))
+											)
+										)		
+									),
+									new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0),
+										new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+											new MonoOperator< float >(static_cast< MONO_INSTRUCTION >(1), 
+												new ArgumentOperator< float >(static_cast< ARGUMENT >(5))
+											),
+											new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+												new ArgumentOperator< float >(static_cast< ARGUMENT >(4)), 
+												new ValueOperator< float >(0.975982)
+											)
+										),
+										new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+											new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(1), 
+												new ValueOperator< float >(0.999775), 
+												new ArgumentOperator< float >(static_cast< ARGUMENT >(3))
+											),
+											new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3), 
+												new ArgumentOperator< float >(static_cast< ARGUMENT >(2)), 
+												new ArgumentOperator< float >(static_cast< ARGUMENT >(4))
+											)
+										)
+									)
+								)
+							),
+							new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3), 
+								new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3),
+									new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2),
+										new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0), 
+											new ValueOperator< float >(0.99968), 
+											new ArgumentOperator< float >(static_cast< ARGUMENT >(1))
+										),
+										new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+											new ArgumentOperator< float >(static_cast< ARGUMENT >(5)), 
+											new ValueOperator< float >(0.0238847)
+										)
+									),
+									new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0),
+										new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(1), 
+											new ArgumentOperator< float >(static_cast< ARGUMENT >(0)), 
+											new ArgumentOperator< float >(static_cast< ARGUMENT >(3))
+										),
+										new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3), 
+											new ArgumentOperator< float >(static_cast< ARGUMENT >(0)), 
+											new ArgumentOperator< float >(static_cast< ARGUMENT >(4))
+										)
+									)		
+								), 
+								new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0),
+									new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(1), 
+										new ValueOperator< float >(0.0646916), 
+										new ValueOperator< float >(0.620652)
+									),
+									new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(1),
+										new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+											new ValueOperator< float >(0.0250885), 
+											new ArgumentOperator< float >(static_cast< ARGUMENT >(5))
+										),
+										new ValueOperator< float >(0.717881)
+									)		
+								)
+							)
+						)
+					)		
+				),
+				new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3),
+					new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0),
+						new MonoOperator< float >(static_cast< MONO_INSTRUCTION >(1),
+							new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(1), 
+								new ArgumentOperator< float >(static_cast< ARGUMENT >(2)), 
+								new ValueOperator< float >(0.136044)
+							)
+						),
+						new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3),
+							new MonoOperator< float >(static_cast< MONO_INSTRUCTION >(1), 
+								new ArgumentOperator< float >(static_cast< ARGUMENT >(0))
+							),
+							new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(3), 
+								new ArgumentOperator< float >(static_cast< ARGUMENT >(3)), 
+								new ArgumentOperator< float >(static_cast< ARGUMENT >(4))
+							)
+						)		
+					),
+					new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2),
+						new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(1), 
+							new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(1), 
+								new ArgumentOperator< float >(static_cast< ARGUMENT >(0)), 
+								new ValueOperator< float >(0.82492)
+							),
+							new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+								new ArgumentOperator< float >(static_cast< ARGUMENT >(1)), 
+								new ArgumentOperator< float >(static_cast< ARGUMENT >(3))
+							)
+						),
+						new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(0), 
+							new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+								new ValueOperator< float >(0.0490735), 
+								new ValueOperator< float >(0.975982)
+							),
+							new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(2), 
+								new ValueOperator< float >(0.0087028), 
+								new ArgumentOperator< float >(static_cast< ARGUMENT >(1))
+							)
+						)
+					)
+				)
+			)
+		);	
+									
+		std::cout << "(" << functionProf <<  ")" << std::endl << "ecart-type =" << functionProf->bench(s_table);
+		exit(0);
+		
 		Operator< float >* op = generateTree(random(1, 6));		
 
 		Function< float >& function = *(new Function< float >(op));
