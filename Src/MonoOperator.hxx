@@ -86,6 +86,27 @@ T MonoOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 		case MONO_INSTRUCTION::INVERSION :
 			result = 1 / m_operator->compute(_a, _b, _c, _d, _e, _f);
 			break;
+		case MONO_INSTRUCTION::SIN :
+			result = std::sin(m_operator->compute(_a, _b, _c, _d, _e, _f));
+			break;
+		case MONO_INSTRUCTION::COS :
+			result = std::cos(m_operator->compute(_a, _b, _c, _d, _e, _f));
+			break;
+		case MONO_INSTRUCTION::TAN :
+			result = std::tan(m_operator->compute(_a, _b, _c, _d, _e, _f));
+			break;
+		case MONO_INSTRUCTION::SQUARE :
+			result = std::pow(m_operator->compute(_a, _b, _c, _d, _e, _f), 2);
+			break;
+		case MONO_INSTRUCTION::FLOOR :
+			result = std::floor(m_operator->compute(_a, _b, _c, _d, _e, _f));
+			break;
+		case MONO_INSTRUCTION::CEIL :
+			result = std::ceil(m_operator->compute(_a, _b, _c, _d, _e, _f));
+			break;
+		case MONO_INSTRUCTION::EXP :
+			result = std::exp(m_operator->compute(_a, _b, _c, _d, _e, _f));
+			break;
 		default :
 			throw std::invalid_argument("Unknow instruction");
 			break;
@@ -138,34 +159,49 @@ std::string MonoOperator< T >::print() const
 {
 	
 	std::string before = "";
-	std::string after = ""; 
 	switch(m_instruction)
 	{
 		case MONO_INSTRUCTION::SQUARE_ROOT :
 			before = "sqrt(";
-			after = ")";
 			break;
 		case MONO_INSTRUCTION::LOG :
 			before = "log(";
-			after = ")";
 			break;
 		case MONO_INSTRUCTION::ABSOLUTE :
 			before = "abs(";
-			after = ")";
 			break;
 		case MONO_INSTRUCTION::NEGATION :
 			before = "neg(";
-			after = ")";
 			break;
 		case MONO_INSTRUCTION::INVERSION :
 			before = "inv(";
-			after = ")";
+			break;
+		case MONO_INSTRUCTION::SIN :
+			before = "sin(";
+			break;
+		case MONO_INSTRUCTION::COS :
+			before = "cos(";
+			break;
+		case MONO_INSTRUCTION::TAN :
+			before = "tan(";
+			break;
+		case MONO_INSTRUCTION::SQUARE :
+			before = "square(";
+			break;
+		case MONO_INSTRUCTION::FLOOR :
+			before = "floor(";
+			break;
+		case MONO_INSTRUCTION::CEIL :
+			before = "ceil(";
+			break;
+		case MONO_INSTRUCTION::EXP :
+			before = "exp(";
 			break;
 		default :
 			throw std::invalid_argument("Unknow instruction");
 			break;
 	}
-	return before + m_operator->print() + after ;
+	return before + m_operator->print() + ")";
 }
 
 template< typename T >
@@ -174,7 +210,7 @@ void MonoOperator< T >::mutate(int _rand)
 	int rand = globalRandomGenerator->random(0, 10001);
 	if(rand < _rand)
 	{
-		m_instruction = static_cast< MONO_INSTRUCTION >(globalRandomGenerator->random(0, 5));
+		m_instruction = static_cast< MONO_INSTRUCTION >(globalRandomGenerator->random(0, MONO_INSTRUCTION_SIZE));
 	}
 	m_operator->mutate(_rand);
 }

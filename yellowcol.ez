@@ -29,30 +29,26 @@ vector< vector< float > > s_table;
 		Operator< float >* op = nullptr;
 		if(_maxDepth == 1)
 		{
-			if(tossCoin(6.f/7.f))
+			if(tossCoin(ARGUMENT_SIZE/(ARGUMENT_SIZE+1.f)))
 			{
-				op = new ArgumentOperator< float >(static_cast< ARGUMENT >(random(0, 6)));		
+				op = new ArgumentOperator< float >(static_cast< ARGUMENT >(random(0, ARGUMENT_SIZE)));		
 
 			}
 			else
 			{
-				op = new ValueOperator< float >(static_cast <float> (std::rand()) / static_cast <float> (RAND_MAX));
+				op = new ValueOperator< float >(static_cast< float >(std::rand()) / static_cast< float >(RAND_MAX));
 			}
 		}
 		else
 		{
-			int type = random(0, 3);
+			int type = random(0, 2);
 			if(type == 0)
-			{
-				op = generateTree(1);		
-			}
-			else if(type == 1)
 			{
 				op = new MonoOperator< float >(static_cast< MONO_INSTRUCTION >(random(0, 5)), generateTree(_maxDepth-1));
 			}
 			else
 			{
-				op = new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(random(0, 6)), generateTree(_maxDepth-1), generateTree(_maxDepth-1));
+				op = new DualOperator< float >(static_cast< DUAL_INSTRUCTION >(random(0, DUAL_INSTRUCTION_SIZE)), generateTree(_maxDepth-1), generateTree(_maxDepth-1));
 			}
 		}
 		return op;
@@ -129,7 +125,8 @@ vector< vector< float > > s_table;
 
 \GenomeClass::display:
 	const Function< float >& function = *(Function< float >*)Genome.m_function;
-	std::cout << function << std::endl;
+	std::cout << "	Best score : " << function.bench(s_table) << std::endl;
+	std::cout << "	Function " << function << std::endl;
 \end
 
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -187,10 +184,17 @@ vector< vector< float > > s_table;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \GenomeClass::mutator:
-	
-  	Function< float >& function = *(Function< float >*)Genome.m_function;
-	int rand = random(0, 1001);
-	function.mutate(rand);
+	try
+	{
+	  	Function< float >& function = *(Function< float >*)Genome.m_function;
+		int rand = random(0, 1001);
+		function.mutate(rand);
+	}
+	catch(const std::exception& _e)
+	{
+		std::cerr << "Mutator error : " << _e.what() << std::endl;
+		std::exit(1);
+	}
   	return 1;
 \end
 
@@ -205,7 +209,7 @@ vector< vector< float > > s_table;
 	}
 	catch(const std::exception& _e)
 	{
-		std::cerr << "Crossover error : " << _e.what() << std::endl;
+		std::cerr << "Evaluator error : " << _e.what() << std::endl;
 		std::exit(1);
 	}
 \end
@@ -221,22 +225,22 @@ vector< vector< float > > s_table;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------ */
 
 \Default run parameters :         // Please let the parameters appear in this order
-Number of generations : 1000     // NB_GEN
+Number of generations : 2000     // NB_GEN
 Time limit: 0                     // In seconds, 0 to deactivate
-Population size : 10000             // POP_SIZE
-Offspring size : 90%             // 40% 
-Mutation probability : 0.4        // MUT_PROB
-Crossover probability : 1         // XOVER_PROB
+Population size : 100000             // POP_SIZE
+Offspring size : 60%             // 40% 
+Mutation probability : 0.6      // MUT_PROB
+Crossover probability : 0.7         // XOVER_PROB
 Evaluator goal : minimise         // Maximise
-Selection operator: Tournament 2 
+Selection operator: Roulette 2 
 Surviving parents: 50%           // percentage or absolute
 Surviving offspring: 100%
-Reduce parents operator: Tournament 2
-Reduce offspring operator: Tournament 2
-Final reduce operator: Tournament 3
+Reduce parents operator: Roulette 2
+Reduce offspring operator: Roulette 2
+Final reduce operator: Roulette 3
 
-Elitism: Weak                     // Weak or Strong
-Elite: 1
+Elitism: Strong                     // Weak or Strong
+Elite: 10
 Print stats: true                 // Default: 1
 Generate csv stats file:false
 Generate gnuplot script:false

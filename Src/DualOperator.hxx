@@ -124,6 +124,9 @@ T DualOperator< T >::compute(T _a, T _b, T _c, T _d, T _e, T _f) const
 		case DUAL_INSTRUCTION::MAXIMUM :
 			result = std::max(m_firstOperand->compute(_a, _b, _c, _d, _e, _f), m_secondOperand->compute(_a, _b, _c, _d, _e, _f));
 			break;
+		case DUAL_INSTRUCTION::POW :
+			result = std::pow(m_firstOperand->compute(_a, _b, _c, _d, _e, _f), m_secondOperand->compute(_a, _b, _c, _d, _e, _f));
+			break;
 		default :
 			throw std::invalid_argument("Unknow instruction");
 			break;
@@ -191,46 +194,43 @@ std::string DualOperator< T >::print() const
 {
 	std::string before = "";
 	std::string between = "";
-	std::string after = ""; 
 	
 	switch(m_instruction)
 	{
 		case DUAL_INSTRUCTION::ADDITION :
 			before = "(";
 			between = "+";
-			after = ")";
 			break;
 		case DUAL_INSTRUCTION::SUBTRACTION :
 			before = "(";
 			between = "-";
-			after = ")";
 			break;
 		case DUAL_INSTRUCTION::MULTIPLICATION :
 			before = "(";
 			between = "*";
-			after = ")";
 			break;
 		case DUAL_INSTRUCTION::DIVISION :
 			before = "(";
 			between = "/";
-			after = ")";
 			break;
 		case DUAL_INSTRUCTION::MINIMUM :
 			before = "min(";
 			between = ",";
-			after = ")";
 			break;
 		case DUAL_INSTRUCTION::MAXIMUM :
 			before = "max(";
 			between = ",";
-			after = ")";
+			break;
+		case DUAL_INSTRUCTION::POW :
+			before = "pow(";
+			between = ",";
 			break;
 		default :
 			throw std::invalid_argument("Unknow instruction");
 			break;
 	}
 	
-	return before + m_firstOperand->print() + between + m_secondOperand->print() + after ;
+	return before + m_firstOperand->print() + between + m_secondOperand->print() + ")" ;
 }
 
 template< typename T >
@@ -239,7 +239,7 @@ void DualOperator< T >::mutate(int _rand)
 	int rand = globalRandomGenerator->random(0, 10001);
 	if(rand < _rand)
 	{
-		m_instruction = static_cast< DUAL_INSTRUCTION >(globalRandomGenerator->random(0, 6));
+		m_instruction = static_cast< DUAL_INSTRUCTION >(globalRandomGenerator->random(0, DUAL_INSTRUCTION_SIZE));
 	}
 	m_firstOperand->mutate(_rand);
 	m_secondOperand->mutate(_rand);
