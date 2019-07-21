@@ -80,6 +80,7 @@ matrix:
     #==============================
 
     - os: linux
+      dist: xenial
       compiler: gcc-4.9
       addons:
         apt:
@@ -90,6 +91,7 @@ matrix:
       env: MATRIX_EVAL="CXX=g++-4.9"
 
     - os: linux
+      dist: xenial
       compiler: gcc-5
       addons:
         apt:
@@ -136,6 +138,7 @@ matrix:
     #==============================
 
     - os: linux
+      dist: xenial
       addons:
         apt:
           sources:
@@ -149,6 +152,7 @@ matrix:
         - MATRIX_EVAL="CXX=clang++-3.6"
 
     - os: linux
+      dist: xenial
       addons:
         apt:
           sources:
@@ -162,6 +166,7 @@ matrix:
         - MATRIX_EVAL="CXX=clang++-3.7"
 
     - os: linux
+      dist: xenial
       addons:
         apt:
           sources:
@@ -175,6 +180,7 @@ matrix:
         - MATRIX_EVAL="CXX=clang++-3.8"
 
     - os: linux
+      dist: xenial
       addons:
         apt:
           sources:
@@ -187,6 +193,7 @@ matrix:
         - MATRIX_EVAL="CXX=clang++-3.9"
 
     - os: linux
+      dist: xenial
       addons:
         apt:
           sources:
@@ -199,6 +206,7 @@ matrix:
         - MATRIX_EVAL="CXX=clang++-4.0"
 
     - os: linux
+      dist: xenial
       addons:
         apt:
           sources:
