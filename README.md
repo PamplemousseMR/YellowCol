@@ -6,9 +6,9 @@ The evaluation function is the standard deviation on all points
 
 ![img](Doc/Evaluation.jpg)
 
-## Travis
+## Circle-CI
 
-[![Build Status](https://travis-ci.com/PamplemousseMR/YellowCol.svg?branch=master)](https://travis-ci.com/PamplemousseMR/YellowCol)
+[![Build Status](https://circleci.com/gh/PamplemousseMR/YellowCol/tree/master.svg?style=svg)](https://circleci.com/gh/PamplemousseMR/YellowCol/tree/master)
 
 ## Getting Started
 

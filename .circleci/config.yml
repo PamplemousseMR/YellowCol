@@ -1,0 +1,140 @@
+version: 2.1
+
+commands:
+  install_dependencies:
+    parameters:
+      compilers:
+        type: string
+        default: ""
+    steps:
+      - run: 
+          name: Install dependencies
+          command: |
+            apt-get update
+            apt-get --assume-yes install make
+            apt-get --assume-yes install bison flex
+            apt-get --assume-yes install git
+            apt-get --assume-yes install libomp-dev
+            apt-get --assume-yes install << parameters.compilers >>
+            git clone https://github.com/EASEA/easea.git
+            cd easea
+            git checkout v1.0.3
+            cd ..
+
+  build_project:
+    parameters:
+      compiler:
+        type: string
+        default: ""
+    steps:
+      - run: 
+          name: Build project with << parameters.compiler >>
+          command: |
+            export CXX=<< parameters.compiler >>
+
+            cd easea
+            make
+            ./install.sh local
+            export EZ_PATH=$HOME/project/easea/
+            cd ..
+
+            ./easea/bin/easea yellowcol.ez
+            chmod 777 ./hack.sh
+            ./hack.sh
+            make
+            make clean
+
+            cd easea
+            make clean
+            cd ..
+
+jobs:
+  Ubuntu-14-04:
+    docker:
+      - image: ubuntu:14.04
+    steps:
+      - checkout
+      - install_dependencies:
+          compilers: g++-4.7 g++-4.8
+      - build_project:
+          compiler: g++-4.7
+      - build_project:
+          compiler: g++-4.8
+
+  Ubuntu-16-04:
+    docker:
+      - image: ubuntu:16.04
+    steps:
+      - checkout
+      - install_dependencies:
+          compilers: g++-4.7 g++-4.8 g++-4.9 g++-5
+      - build_project:
+          compiler: g++-4.7
+      - build_project:
+          compiler: g++-4.8
+      - build_project:
+          compiler: g++-4.9
+      - build_project:
+          compiler: g++-5
+
+  Ubuntu-18-04:
+    docker:
+      - image: ubuntu:18.04
+    steps:
+      - checkout
+      - install_dependencies:
+          compilers: g++-4.8 g++-5 g++-6 g++-7 g++-8
+      - build_project:
+          compiler: g++-4.8
+      - build_project:
+          compiler: g++-5
+      #- build_project:
+      #    compiler: g++-6
+      #- build_project:
+      #    compiler: g++-7
+      #- build_project:
+      #    compiler: g++-8
+
+  Ubuntu-20-04:
+    docker:
+      - image: ubuntu:20.04
+    steps:
+      - checkout
+      - install_dependencies:
+          compilers: g++-7 g++-8 g++-9 g++-10
+      - build_project:
+          compiler: g++-7
+      - build_project:
+          compiler: g++-8
+      - build_project:
+          compiler: g++-9
+      - build_project:
+          compiler: g++-10
+
+  Ubuntu-21-04:
+    docker:
+      - image: ubuntu:21.04
+    steps:
+      - checkout
+      - install_dependencies:
+          compilers: g++-7 g++-8 g++-9 g++-10 g++-11
+      - build_project:
+          compiler: g++-7
+      - build_project:
+          compiler: g++-8
+      - build_project:
+          compiler: g++-9
+      - build_project:
+          compiler: g++-10
+      - build_project:
+          compiler: g++-11
+
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      #- Ubuntu-14-04
+      - Ubuntu-16-04
+      - Ubuntu-18-04
+      #- Ubuntu-20-04
+      #- Ubuntu-21-04
